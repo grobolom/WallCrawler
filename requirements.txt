@@ -1,0 +1,6 @@
+pytest
+pytest-watch
+pytest-cov
+coverage
+
+blessed
