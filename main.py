@@ -9,9 +9,16 @@ def main():
 
     s = app.Screen()
     r = app.PositionReducer()
+    k = app.KeyboardActionBuilder()
 
+    i = ''
+    new_state = state
     while True:
-        print('\n'. join(s.draw(state)))
+        action = k.getAction(i)
+        new_state = r.reduce(new_state, action)
+        print('\n'. join(s.draw(new_state)))
+        print(state['character_position'])
+
         i = raw_input('> ')
 
 if __name__ == "__main__":
