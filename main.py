@@ -1,4 +1,5 @@
 import app
+import blessed
 
 def main():
     state = {
@@ -11,15 +12,18 @@ def main():
     r = app.PositionReducer()
     k = app.KeyboardActionBuilder()
 
-    i = ''
+    key = None
     new_state = state
+
     while True:
-        action = k.getAction(i)
+        with blessed.Terminal().cbreak():
+            key = blessed.Terminal().inkey()
+
+        action = k.getAction(key)
         new_state = r.reduce(new_state, action)
         print('\n'. join(s.draw(new_state)))
         print(state['character_position'])
 
-        i = raw_input('> ')
 
 if __name__ == "__main__":
     main()
