@@ -3,7 +3,7 @@ class PositionReducer:
         new_state = state
 
         position = state['character_position']
-        map_size = state['map_size']
+        map_size = state['map']['size']
 
         name = action['name']
         if name == 'MOVE_UP':

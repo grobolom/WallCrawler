@@ -5,7 +5,9 @@ class TestPositionReducer:
         reducer = PositionReducer()
         state = {
             'character_position': [5, 5],
-            'map_size': [6, 6],
+            'map': {
+                'size': [6, 6],
+            }
         }
         action = { 'name': 'MOVE_UP' }
         new_state = reducer.reduce(state, action)
@@ -16,7 +18,9 @@ class TestPositionReducer:
         reducer = PositionReducer()
         state = {
             'character_position': [0, 0],
-            'map_size': [6, 6],
+            'map': {
+                'size': [6, 6],
+            }
         }
         action = { 'name': 'MOVE_UP' }
         new_state = reducer.reduce(state, action)
@@ -27,7 +31,9 @@ class TestPositionReducer:
         reducer = PositionReducer()
         state = {
             'character_position': [5, 5],
-            'map_size': [6, 6],
+            'map': {
+                'size': [6, 6],
+            }
         }
         action = { 'name': 'MOVE_DOWN' }
         new_state = reducer.reduce(state, action)
@@ -39,7 +45,9 @@ class TestPositionReducer:
         reducer = PositionReducer()
         state = {
             'character_position': [0, 0],
-            'map_size': [6, 6],
+            'map': {
+                'size': [6, 6],
+            }
         }
         action = { 'name': 'MOVE_LEFT' }
         new_state = reducer.reduce(state, action)
@@ -50,7 +58,9 @@ class TestPositionReducer:
         reducer = PositionReducer()
         state = {
             'character_position': [5, 5],
-            'map_size': [6, 6],
+            'map': {
+                'size': [6, 6],
+            }
         }
         action = { 'name': 'MOVE_RIGHT' }
         new_state = reducer.reduce(state, action)
