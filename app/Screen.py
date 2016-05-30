@@ -30,7 +30,28 @@ class Screen:
         )
 
     def offset_pos(self, obj):
-        pass
+        screen_size_x = obj['screen_size'][0]
+        screen_size_y = obj['screen_size'][1]
+
+        position_x = obj['character_position'][0]
+        position_y = obj['character_position'][1]
+
+        radius_x = (screen_size_x - 1) / 2
+        radius_y = (screen_size_y - 1) / 2
+
+        map_size_x = obj['map_size'][0] - 1
+        map_size_y = obj['map_size'][1] - 1
+
+        fake_x = sorted([0 + radius_x, position_x, map_size_x - radius_x])[1]
+        fake_y = sorted([0 + radius_y, position_y, map_size_y - radius_y])[1]
+
+        from_center_x = position_x - fake_x
+        from_center_y = position_y - fake_y
+
+        return (
+            from_center_x + radius_x,
+            from_center_y + radius_y,
+        )
 
     def centered(self, obj):
         screen_size_x = obj['screen_size'][0]
