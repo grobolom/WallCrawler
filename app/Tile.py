@@ -1,4 +1,4 @@
-class Tile:
+class Tile(object):
     def __init__(self):
         self.walkable = True
         self.blocks_los = False
@@ -12,4 +12,4 @@ class Floor(Tile):
 class Wall(Tile):
     def __init__(self):
         super(Wall, self).__init__()
-        self.ascci_rep = '#'
+        self.ascii_rep = '#'
