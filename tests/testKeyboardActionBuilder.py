@@ -21,3 +21,9 @@ class TestKeyboardActionBuilder:
         k = KeyboardActionBuilder()
 
         assert k.getAction(key) == { 'name': 'MOVE_LEFT' }
+
+    def test_it_should_move_other_keys_to_nothing(self):
+        key = ''
+        k = KeyboardActionBuilder()
+
+        assert k.getAction(key) == { 'name': 'NO_MOVE' }

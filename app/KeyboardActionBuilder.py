@@ -8,4 +8,4 @@ class KeyboardActionBuilder:
             return { 'name': 'MOVE_LEFT' }
         if key == 'l':
             return { 'name': 'MOVE_RIGHT' }
-        return {}
+        return { 'name': 'NO_MOVE' }
