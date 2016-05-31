@@ -13,17 +13,18 @@ class CharacterMover:
         if action['name'] != 'MOVE_CHARACTER':
             return state
 
-        to = action['to']
-        x = to[0]
-        y = to[1]
-
         character = state['character']
 
-        map = state['map']['tiles']
-        if type(map[y][x]) == app.Floor:
+        if _targeTileIsWalkable(action['to'], state['map']['tiles']):
             character['position'] = to
 
         new_state = state
         new_state['character'] = character
 
         return new_state
+
+    def _targetTileIsWalkable(self, to, map):
+        x = to[0]
+        y = to[1]
+
+        return type(map([y][x])) == app.Floor
