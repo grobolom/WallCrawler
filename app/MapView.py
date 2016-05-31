@@ -10,8 +10,8 @@ class MapView:
 
         for obj in objects:
             if self._isOnScreen(positions, obj):
-                screen_x, screen_y = self._getScreenPos(obj)
-                tiles[screen_x][screen_y] = obj.ascii_rep
+                screen_x, screen_y = self._getScreenPos(positions, obj)
+                tiles[screen_y][screen_x] = obj.ascii_rep
 
         return tiles
 
@@ -28,5 +28,6 @@ class MapView:
                 obj.y <= max_pos[1]
 
 
-    def _getScreenPos(self, object):
-        return (0, 0)
+    def _getScreenPos(self, positions, obj):
+        min_pos = positions[0][0]
+        return (obj.x - min_pos[0], obj.y - min_pos[1])
