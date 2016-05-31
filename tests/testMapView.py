@@ -13,3 +13,15 @@ class TestMapView:
 
         expected = [['x']]
         assert expected == map_view.draw(map, positions)
+
+    def test_it_should_draw_several_tiles(self):
+        map_view = MapView()
+
+        tile = Tile()
+        tile.ascii_rep = 'y'
+
+        map = [[ tile, tile, tile ]]
+        positions = [[(1, 0), (1, 1)]]
+
+        expected = [['y', 'y']]
+        assert expected == map_view.draw(map, positions)
