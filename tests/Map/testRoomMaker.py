@@ -1,0 +1,2 @@
+class TestRoomMaker:
+    pass
