@@ -71,17 +71,3 @@ class TestPositionReducer:
 
         assert new_state['character'].x == 5
         assert new_state['character'].y == 5
-
-    def test_it_should_shove_the_character_into_the_list_of_objects(self):
-        reducer = PositionReducer()
-        state = {
-            'character': app.Character({'x': 0, 'y': 0}),
-            'map': {
-                'size': [1, 1],
-            },
-            'objects': [],
-        }
-        action = { 'name': 'MOVE_UP' }
-        new_state = reducer.reduce(state, action)
-
-        assert new_state['objects'] == [ new_state['character'] ]
