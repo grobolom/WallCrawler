@@ -1,4 +1,4 @@
-from app import Floor
+import app
 
 class RoomMaker:
     def addRoom(self, map, room_corner, room_size):
@@ -7,13 +7,13 @@ class RoomMaker:
 
         if self._roomGoesPastMapEdge(map['size'], room_corner, room_size):
             raise Exception('room too big')
-        
+
         if self._roomOverlapsExistingFloor(tiles, room_corner, room_size):
             raise Exception('room already exists here')
 
         for x in range(room_size[0]):
             for y in range(room_size[1]):
-                tiles[y + room_corner[1]][x + room_corner[0]] = Floor()
+                tiles[y + room_corner[1]][x + room_corner[0]] = app.Floor()
 
         new_map['tiles'] = tiles
 
@@ -26,6 +26,7 @@ class RoomMaker:
     def _roomOverlapsExistingFloor(self, tiles, corner, size):
         for x in range(size[0]):
             for y in range(size[1]):
-                if tiles[y + corner[1]][x + corner[0]]:
+                t = tiles[y + corner[1]][x + corner[0]]
+                if t != None and type(t) != app.Tile:
                     return True
         return False
