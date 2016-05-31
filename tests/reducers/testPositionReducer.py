@@ -1,4 +1,4 @@
-from app import PositionReducer
+from app.reducers import PositionReducer
 import app
 
 class TestPositionReducer:
