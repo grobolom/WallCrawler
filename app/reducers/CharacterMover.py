@@ -14,8 +14,10 @@ class CharacterMover:
             return state
 
         character = state['character']
+        map       = state['map']['tiles']
+        to        = action['to']
 
-        if _targeTileIsWalkable(action['to'], state['map']['tiles']):
+        if self._targetTileIsWalkable(to, map):
             character['position'] = to
 
         new_state = state
@@ -27,4 +29,4 @@ class CharacterMover:
         x = to[0]
         y = to[1]
 
-        return type(map([y][x])) == app.Floor
+        return type(map[y][x]) == app.Floor
