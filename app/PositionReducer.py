@@ -5,6 +5,10 @@ class PositionReducer:
         character = state['character']
         position = [character.x, character.y]
 
+        objects = []
+        if 'objects' in state:
+            objects = state['objects']
+
         map_size = state['map']['size']
 
         name = action['name']
@@ -17,5 +21,13 @@ class PositionReducer:
             position[0] = max(0, position[0] - 1)
         if name == 'MOVE_RIGHT':
             position[0] = min(map_size[0] - 1, position[0] + 1)
+
+        character.x = position[0]
+        character.y = position[1]
+
+        objects = [x for x in objects if x.type != 'char' ]
+        objects.append(character)
+
+        new_state['objects'] = objects
 
         return new_state
