@@ -29,4 +29,5 @@ class TestRoomMaker(unittest.TestCase):
 
         r = RoomMaker()
 
-        self.assertRaises(Exception, r.addRoom(map, room_corner, room_size))
+        with self.assertRaises(Exception) as context:
+            r.addRoom(map, room_corner, room_size)
