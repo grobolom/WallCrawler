@@ -7,4 +7,5 @@ class CharacterMover:
     easily. Maybe it's easier to use something other than a plain list but
     we will tackle it when we get there.
     """
-    pass
+    def reduce(self, state, action):
+        return {}
