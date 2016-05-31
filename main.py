@@ -12,26 +12,21 @@ def main():
     s_map['tiles'][2][7] = app.Wall()
 
     position = [6, 6]
-    screen_size = [5, 5]
+    screen_size = [7, 7]
     map_size = s_map['size']
 
     s = app.Screen()
     v = app.MapView()
-
-    positions = s.draw(map_size, screen_size, position)
-    print(v.draw(s_map['tiles'], positions))
-
-    """
-
-    state = {
-        'character_position': [0, 0],
-        'screen_size': [5, 5],
-        'map': s_map,
-    }
-
-    s = app.Screen()
     r = app.PositionReducer()
     k = app.KeyboardActionBuilder()
+
+    positions = s.draw(map_size, screen_size, position)
+
+    state = {
+        'map': s_map,
+        'character': app.Character(),
+        'objects': [],
+    }
 
     key = None
     new_state = state
@@ -40,15 +35,16 @@ def main():
         with blessed.Terminal().cbreak():
             key = blessed.Terminal().inkey()
 
-        action = k.getAction(key)
+        action    = k.getAction(key)
         new_state = r.reduce(new_state, action)
 
-        for l in s.draw(new_state):
+        c = new_state['character']
+        pos = (c.x, c.y)
+        positions = s.draw(map_size, screen_size, pos)
+        objects = new_state['objects']
+
+        for l in v.draw(new_state['map']['tiles'], positions, objects):
             print(''.join(l))
-
-        print(state['character_position'])
-    """
-
 
 if __name__ == "__main__":
     main()
