@@ -11,6 +11,18 @@ def main():
     s_map['tiles'][7][2] = app.Wall()
     s_map['tiles'][2][7] = app.Wall()
 
+    position = [6, 6]
+    screen_size = [5, 5]
+    map_size = s_map['size']
+
+    s = app.Screen()
+    v = app.MapView()
+
+    positions = s.draw(map_size, screen_size, position)
+    print(v.draw(s_map['tiles'], positions))
+
+    """
+
     state = {
         'character_position': [0, 0],
         'screen_size': [5, 5],
@@ -35,6 +47,7 @@ def main():
             print(''.join(l))
 
         print(state['character_position'])
+    """
 
 
 if __name__ == "__main__":
