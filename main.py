@@ -1,15 +1,18 @@
 import app
+import app.Map
 import blessed
 
 def main():
+
+    rm = app.Map.RoomMaker()
     s_map = {
-        'tiles': [ [ app.Floor() for i in range(10) ] for j in range(10) ],
-        'size': [10, 10]
+        'tiles': [ [ app.Tile() for i in range(80) ] for j in range(20) ],
+        'size': [80, 20],
     }
-    s_map['tiles'][2][2] = app.Wall()
-    s_map['tiles'][7][7] = app.Wall()
-    s_map['tiles'][7][2] = app.Wall()
-    s_map['tiles'][2][7] = app.Wall()
+
+    s_map = rm.addRoom(s_map, (0, 0), (5, 5))
+    s_map = rm.addRoom(s_map, (5, 4), (5, 5))
+    s_map = rm.addRoom(s_map, (2, 5), (3, 3))
 
     position = [6, 6]
     screen_size = [7, 7]
@@ -43,6 +46,7 @@ def main():
         positions = s.draw(map_size, screen_size, pos)
         objects = new_state['objects']
 
+        print(blessed.Terminal().clear)
         for l in v.draw(new_state['map']['tiles'], positions, objects):
             print(''.join(l))
 
