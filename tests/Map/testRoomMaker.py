@@ -5,7 +5,6 @@ from app import Floor
 
 class TestRoomMaker(unittest.TestCase):
     def test_it_should_make_a_room(self):
-        rooms = []
         map = {
             'tiles': [[ None for i in range(80) ] for j in range(20) ],
             'size': [80, 20]
@@ -19,7 +18,6 @@ class TestRoomMaker(unittest.TestCase):
         assert type(map['tiles'][8][8]) == Floor
 
     def test_it_should_not_add_a_room_off_the_edge_of_the_map(self):
-        rooms = []
         map = {
             'tiles': [[ None for i in range(80) ] for j in range(20) ],
             'size': [80, 20]
@@ -31,3 +29,14 @@ class TestRoomMaker(unittest.TestCase):
 
         with self.assertRaises(Exception) as context:
             r.addRoom(map, room_corner, room_size)
+
+    def test_it_should_not_overlap_rooms(self):
+        map = {
+            'tiles': [[ None for i in range(80) ] for j in range(20) ],
+            'size': [80, 20]
+        }
+        r = RoomMaker()
+
+        r.addRoom(map, (0, 0), (5, 5))
+        with self.assertRaises(Exception) as context:
+            r.addRoom(map, (2, 2), (7, 7))
