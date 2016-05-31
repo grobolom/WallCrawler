@@ -13,35 +13,23 @@ class Screen:
 
         return [[ (x, y) for x in indices_x ] for y in indices_y ]
 
-    def _getFakeCenter(self, m, s, p):
-        return p
+    def _getFakeCenter(self, m, screen, point):
+        map_x    = m[0]
+        map_y    = m[1]
+        screen_x = screen[0]
+        screen_y = screen[1]
+        radius_x = (screen_x - 1) / 2
+        radius_y = (screen_y - 1) / 2
+        point_x = point[0]
+        point_y = point[1]
 
-    def x_draw(self, obj):
-        c_position  = obj['character_position']
-        map_size    = obj['map']['size']
-        screen_size = obj['screen_size']
+        if point_x + radius_x <= (map_x - 1) and \
+           point_y + radius_y <= (map_y - 1) and \
+           point_x - radius_x >= 0 and \
+           point_y - radius_y >= 0:
+            return point
 
-        centered = self.centered(obj)
-        if centered:
-            pos = self.centered_pos(obj)
-        else:
-            pos = self.offset_pos(obj)
-
-        screen_size_x = obj['screen_size'][0]
-        screen_size_y = obj['screen_size'][1]
-
-        radius_x = (screen_size_x - 1) / 2
-        radius_y = (screen_size_y - 1) / 2
-
-        indices_x = range(pos[0] - radius_x, pos[0] + radius_x + 1)
-        indices_y = range(pos[1] - radius_y, pos[1] + radius_y + 1)
-
-        s = [[
-            obj['map']['tiles'][x][y].ascii_rep
-                for x in indices_x ]
-                for y in indices_y ]
-
-        return s
+        return [8, 8]
 
     def centered_pos(self, obj):
         pos_x = obj['character_position'][0]
