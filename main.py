@@ -1,5 +1,7 @@
 import app
 import app.Map
+import app.reducers
+import app.utils
 import blessed
 
 def main():
@@ -20,7 +22,6 @@ def main():
 
     s = app.Screen()
     v = app.MapView()
-    r = app.PositionReducer()
     k = app.KeyboardActionBuilder()
 
     positions = s.draw(map_size, screen_size, position)
@@ -31,15 +32,23 @@ def main():
         'objects': [],
     }
 
+    reducers = [
+        app.reducers.PositionReducer(),
+        app.reducers.CharacterShovel(),
+    ]
+
     key = None
-    new_state = state
+
+    st = app.utils.Store(reducers, state)
 
     while True:
         with blessed.Terminal().cbreak():
             key = blessed.Terminal().inkey()
 
         action    = k.getAction(key)
-        new_state = r.reduce(new_state, action)
+        st.dispatch(action)
+
+        new_state = st.getState()
 
         c = new_state['character']
         pos = (c.x, c.y)
