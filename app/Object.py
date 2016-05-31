@@ -3,3 +3,4 @@ class Object(object):
         self.x = 0
         self.y = 0
         self.ascii_rep = '@'
+        self.type = 'Object'

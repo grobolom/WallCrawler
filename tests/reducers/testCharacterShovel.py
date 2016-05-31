@@ -28,10 +28,10 @@ class TestCharacterShovel:
 
         state = {
             'objects': objects,
-            'character': c,
+            'character': changed_c,
         }
 
-        expected = [ some_object, c ]
+        expected = [ some_object, changed_c ]
 
         reducer = app.reducers.CharacterShovel()
         new_state = reducer.reduce(state, {})
