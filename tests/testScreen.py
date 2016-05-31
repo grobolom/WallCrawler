@@ -31,6 +31,17 @@ class TestScreen(unittest.TestCase):
         assert expected == s.draw(map_size, screen_size, selected_point)
 
     def test_it_should_not_draw_past_the_top_right(self):
-        pass
+        s = Screen()
+        map_size = [10, 10]
+        screen_size = [3, 3]
+        selected_point = [9, 0]
+
+        expected = [
+            [(7, 0), (8, 0), (9, 0)],
+            [(7, 1), (8, 1), (9, 1)],
+            [(7, 2), (8, 2), (9, 2)],
+        ]
+        assert expected == s.draw(map_size, screen_size, selected_point)
+
     def test_it_should_not_draw_past_the_top_left(self):
         pass
