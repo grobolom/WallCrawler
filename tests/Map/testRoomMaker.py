@@ -43,7 +43,7 @@ class TestRoomMaker(unittest.TestCase):
 
     def test_it_should_be_ok_overwriting_tiles(self):
         map = {
-            'tiles': [[ app.Tile for i in range(80) ] for j in range(20) ],
+            'tiles': [[ app.Tile() for i in range(80) ] for j in range(20) ],
             'size': [80, 20]
         }
         room_corner = (4, 4)
