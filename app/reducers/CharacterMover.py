@@ -1,3 +1,5 @@
+import app
+
 class CharacterMover:
     """
     this is a reducer that handles moving the character. While later we will
@@ -8,4 +10,20 @@ class CharacterMover:
     we will tackle it when we get there.
     """
     def reduce(self, state, action):
-        return {}
+        if action['name'] != 'MOVE_CHARACTER':
+            return state
+
+        to = action['to']
+        x = to[0]
+        y = to[1]
+
+        character = state['character']
+
+        map = state['map']['tiles']
+        if type(map[y][x]) == app.Floor:
+            character['position'] = to
+
+        new_state = state
+        new_state['character'] = character
+
+        return new_state

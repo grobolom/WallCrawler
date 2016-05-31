@@ -20,4 +20,5 @@ class TestCharacterMover:
 
         reducer = CharacterMover()
         new_state = reducer.reduce(state, action)
+
         assert new_state['character']['position'] == [1, 0]
