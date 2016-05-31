@@ -18,7 +18,7 @@ class TestMapView:
         positions = [[(0, 0)]]
 
         expected = [['x']]
-        assert expected == map_view.draw(map, positions)
+        assert expected == map_view.draw(map, positions, [])
 
     def test_it_should_draw_several_tiles(self):
         map_view = MapView()
@@ -30,7 +30,7 @@ class TestMapView:
         positions = [[(0, 0), (0, 1)]]
 
         expected = [['y', 'y']]
-        assert expected == map_view.draw(map, positions)
+        assert expected == map_view.draw(map, positions, [])
 
     def test_it_should_draw_objects_on_top_of_tiles(self):
         obj = MockObject()
