@@ -1,0 +1,2 @@
+class MapView:
+    pass
