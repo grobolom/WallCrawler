@@ -21,7 +21,7 @@ class TestMapView:
         tile.ascii_rep = 'y'
 
         map = [[ tile, tile, tile ]]
-        positions = [[(1, 0), (1, 1)]]
+        positions = [[(0, 0), (0, 1)]]
 
         expected = [['y', 'y']]
         assert expected == map_view.draw(map, positions)
