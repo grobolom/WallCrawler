@@ -2,7 +2,9 @@ class PositionReducer:
     def reduce(self, state, action):
         new_state = state
 
-        position = state['character_position']
+        character = state['character']
+        position = [character.x, character.y]
+
         map_size = state['map']['size']
 
         name = action['name']
