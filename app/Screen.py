@@ -1,5 +1,8 @@
 class Screen:
-    def draw(self, obj):
+    def draw(self, map_size, screen_size, selected_point):
+        return []
+
+    def x_draw(self, obj):
         c_position  = obj['character_position']
         map_size    = obj['map']['size']
         screen_size = obj['screen_size']
