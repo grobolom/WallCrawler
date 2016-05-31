@@ -1,3 +1,5 @@
 class CharacterShovel:
     def reduce(self, state, action):
-        pass
+        new_state = state
+        state['objects'].append(state['character'])
+        return new_state
