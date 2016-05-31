@@ -11,9 +11,9 @@ class TestScreen(unittest.TestCase):
         selected_point = [1, 1]
 
         expected = [
-            [(0, 0), (0, 1), (0, 2)],
-            [(1, 0), (1, 1), (1, 2)],
-            [(2, 0), (2, 1), (2, 2)],
+            [(0, 0), (1, 0), (2, 0)],
+            [(0, 1), (1, 1), (2, 1)],
+            [(0, 2), (1, 2), (2, 2)],
         ]
         assert expected == s.draw(map_size, screen_size, selected_point)
 

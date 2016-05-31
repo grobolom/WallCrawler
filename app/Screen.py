@@ -1,6 +1,20 @@
 class Screen:
     def draw(self, map_size, screen_size, selected_point):
-        return []
+        pos = self._getFakeCenter(map_size, screen_size, selected_point)
+
+        screen_size_x = screen_size[0]
+        screen_size_y = screen_size[1]
+
+        radius_x = (screen_size_x - 1) / 2
+        radius_y = (screen_size_y - 1) / 2
+
+        indices_x = range(pos[0] - radius_x, pos[0] + radius_x + 1)
+        indices_y = range(pos[1] - radius_y, pos[1] + radius_y + 1)
+
+        return [[ (x, y) for x in indices_x ] for y in indices_y ]
+
+    def _getFakeCenter(self, m, s, p):
+        return p
 
     def x_draw(self, obj):
         c_position  = obj['character_position']
