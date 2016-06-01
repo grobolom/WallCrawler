@@ -39,5 +39,5 @@ class CharacterMover:
 
         return x >= 0 and \
                y >= 0 and \
-               x <= map_size[0] and \
-               y <= map_size[1]
+               x <= map_size[0] - 1 and \
+               y <= map_size[1] - 1

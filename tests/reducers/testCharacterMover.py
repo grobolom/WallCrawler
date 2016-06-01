@@ -45,7 +45,7 @@ class TestCharacterMover:
     def test_it_should_not_move_the_character_out_of_bounds(self):
         action = {
             'name': 'MOVE_CHARACTER',
-            'to': [5, 0]
+            'to': [2, 0]
         }
 
         state = {
