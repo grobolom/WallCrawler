@@ -1,1 +1,1 @@
-from .CharacterMover import CharacterMover
+from .MapKeyHandler import MapKeyHandler
