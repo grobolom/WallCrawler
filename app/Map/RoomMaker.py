@@ -20,8 +20,8 @@ class RoomMaker:
         return new_map
 
     def _roomGoesPastMapEdge(self, map_size, room_corner, room_size):
-        return room_corner[0] + room_size[0] - 1 > map_size[0] or \
-               room_corner[1] + room_size[1] - 1 > map_size[1]
+        return room_corner[0] + room_size[0] > map_size[0] or \
+               room_corner[1] + room_size[1] > map_size[1]
 
     def _roomOverlapsExistingFloor(self, tiles, corner, size):
         for x in range(size[0]):
