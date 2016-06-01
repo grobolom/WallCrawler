@@ -1,0 +1,2 @@
+class ValidTilePicker:
+    pass
