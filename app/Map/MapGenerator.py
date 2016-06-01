@@ -1,5 +1,7 @@
 import app
 
+from . import RoomMaker
+
 class MapGenerator:
     def getMap(self, rooms, min_room_size, max_rooms_size, map_size):
         pass
@@ -9,7 +11,7 @@ class MapGenerator:
 
         return self.isEmpty(random_square, map) and \
                self.hasANotEmptySquareNearby(random_square, map) and \
-               self.roomWouldFit(random_square, map)
+               self.roomWouldFit(random_square, map, room_size)
 
     def isEmpty(self, pos, map):
         x = pos[0]
@@ -25,3 +27,6 @@ class MapGenerator:
                not self.isEmpty([x, y - 1], map) or \
                not self.isEmpty([x, y + 1], map)
 
+    def roomWouldFit(self, pos, size, map, map_size):
+        return not RoomMaker()._roomGoesPastMapEdge(map_size, pos, size) and \
+               not RoomMaker()._roomOverlapsExistingFloor(map, pos, size)

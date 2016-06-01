@@ -20,6 +20,19 @@ class TestMapGenerator:
 
         assert sut.hasANotEmptySquareNearby(pos, map) == True
 
+    def test_it_should_return_false_if_the_room_will_not_fit(self):
+        pos = [1, 1]
+        map = [
+            [ app.Floor, app.Tile, app.Tile ],
+            [ app.Floor, app.Tile, app.Tile ],
+            [ app.Floor, app.Tile, app.Tile ],
+        ]
+        map_size = [3, 3]
+        room_size = [3, 3]
+        sut = MapGenerator()
+
+        assert sut.roomWouldFit(pos, room_size, map, map_size) == False
+
     def test_it_should_make_a_map(self):
         sut = MapGenerator()
 
