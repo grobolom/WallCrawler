@@ -4,7 +4,7 @@ class MapView:
     """
     def draw(self, map, positions, objects):
         tiles = [[
-            map[x][y].ascii_rep
+            map[y][x].ascii_rep
             for (x, y) in row ]
             for row in positions ]
 

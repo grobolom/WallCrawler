@@ -12,7 +12,7 @@ class TestCharacterMover:
             'character': app.Character({'x': 0, 'y': 0 }),
             'map': {
                 'tiles': [[ app.Floor(), app.Floor() ]],
-                'size': [2, 0],
+                'size': [2, 1],
             },
         }
 
@@ -32,7 +32,7 @@ class TestCharacterMover:
             'character': app.Character({'x': 0, 'y': 0 }),
             'map': {
                 'tiles': [[ app.Floor(), app.Wall() ]],
-                'size': [2, 0],
+                'size': [2, 1],
             },
         }
 
