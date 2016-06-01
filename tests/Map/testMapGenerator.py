@@ -4,7 +4,7 @@ from app.Map import MapGenerator
 class TestMapGenerator:
     def test_it_should_determine_if_a_square_is_empty(self):
         pos = [0, 0]
-        map = [[ app.Floor ]]
+        map = [[ app.Floor() ]]
         sut = MapGenerator()
 
         assert sut.isEmpty(pos, map) == False
@@ -12,9 +12,9 @@ class TestMapGenerator:
     def test_it_should_return_true_if_a_surrounding_square_is_full(self):
         pos = [1, 1]
         map = [
-            [ app.Floor, app.Tile, app.Tile ],
-            [ app.Floor, app.Tile, app.Tile ],
-            [ app.Floor, app.Tile, app.Tile ],
+            [ app.Floor(), app.Tile(), app.Tile() ],
+            [ app.Floor(), app.Tile(), app.Tile() ],
+            [ app.Floor(), app.Tile(), app.Tile() ],
         ]
         sut = MapGenerator()
 
@@ -23,15 +23,28 @@ class TestMapGenerator:
     def test_it_should_return_false_if_the_room_will_not_fit(self):
         pos = [1, 1]
         map = [
-            [ app.Floor, app.Tile, app.Tile ],
-            [ app.Floor, app.Tile, app.Tile ],
-            [ app.Floor, app.Tile, app.Tile ],
+            [ app.Floor(), app.Tile(), app.Tile() ],
+            [ app.Floor(), app.Tile(), app.Tile() ],
+            [ app.Floor(), app.Tile(), app.Tile() ],
         ]
         map_size = [3, 3]
         room_size = [3, 3]
         sut = MapGenerator()
 
         assert sut.roomWouldFit(pos, room_size, map, map_size) == False
+
+    def test_it_should_return_true_if_the_room_will_fit(self):
+        pos = [1, 1]
+        map = [
+            [ app.Floor(), app.Tile(), app.Tile() ],
+            [ app.Floor(), app.Tile(), app.Tile() ],
+            [ app.Floor(), app.Tile(), app.Tile() ],
+        ]
+        map_size = [3, 3]
+        room_size = [2, 2]
+        sut = MapGenerator()
+
+        assert sut.roomWouldFit(pos, room_size, map, map_size) == True
 
     def test_it_should_make_a_map(self):
         sut = MapGenerator()

@@ -9,9 +9,11 @@ class MapGenerator:
     def findValidPlacementSpot(self, room_size, map):
         random_square = self.getRandomMapSquare(map)
 
-        return self.isEmpty(random_square, map) and \
-               self.hasANotEmptySquareNearby(random_square, map) and \
-               self.roomWouldFit(random_square, map, room_size)
+        a = self.isEmpty(random_square, map)
+        b = self.hasANotEmptySquareNearby(random_square, map)
+        c = self.roomWouldFit(random_square, map, room_size)
+
+        return a and b and c
 
     def isEmpty(self, pos, map):
         x = pos[0]
