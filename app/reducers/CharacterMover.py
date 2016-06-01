@@ -18,7 +18,7 @@ class CharacterMover:
         to        = action['to']
 
         if self._targetTileIsWalkable(to, map):
-            character['position'] = to
+            (character.x, character.y) = to
 
         new_state = state
         new_state['character'] = character
