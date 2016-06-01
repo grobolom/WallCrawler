@@ -15,9 +15,11 @@ class CharacterMover:
 
         character = state['character']
         map       = state['map']['tiles']
+        map_size  = state['map']['size']
         to        = action['to']
 
-        if self._targetTileIsWalkable(to, map):
+        if self._tileIsInbounds(to, map_size) and \
+           self._targetTileIsWalkable(to, map):
             (character.x, character.y) = to
 
         new_state = state
@@ -30,3 +32,12 @@ class CharacterMover:
         y = to[1]
 
         return type(map[y][x]) == app.Floor
+
+    def _tileIsInbounds(self, to, map_size):
+        x = to[0]
+        y = to[1]
+
+        return x >= 0 and \
+               y >= 0 and \
+               x <= map_size[0] and \
+               y <= map_size[1]
