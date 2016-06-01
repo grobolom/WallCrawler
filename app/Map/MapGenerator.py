@@ -1,19 +1,47 @@
 import app
+import random
 
 from . import RoomMaker
+from . import RandomRoomMaker
 
 class MapGenerator:
-    def getMap(self, rooms, min_room_size, max_rooms_size, map_size):
-        pass
+    def getMap(self, rooms, min_room_size, max_room_size, map_size):
 
-    def findValidPlacementSpot(self, room_size, map):
-        random_square = self.getRandomMapSquare(map)
+        map = { 
+            'tiles': [[
+                app.Tile() for i in range(map_size[0]) ]
+                   for j in range(map_size[1])
+            ],
+            'size': map_size,
+        }
 
-        a = self.isEmpty(random_square, map)
-        b = self.hasANotEmptySquareNearby(random_square, map)
-        c = self.roomWouldFit(random_square, map, room_size)
+        map = RoomMaker().addRoom(map, [0, 0], [4, 4])
+
+        x = 0
+        for i in range(rooms):
+            while True:
+                r = self.getRandomMapSquare(map_size)
+                rs = RandomRoomMaker().getRandomRoom(min_room_size, max_room_size)
+
+                is_valid = self.isValidPlacementSpot(r, rs, map['tiles'], map_size)
+                if is_valid:
+                    map = RoomMaker().addRoom(map, r, rs)
+                    break;
+
+        return map
+
+    def isValidPlacementSpot(self, pos, room_size, map, map_size):
+        a = self.isEmpty(pos, map)
+        b = self.hasANotEmptySquareNearby(pos, map)
+        c = self.roomWouldFit(pos, room_size, map, map_size)
 
         return a and b and c
+
+    def getRandomMapSquare(self, map_size):
+        return [
+            random.randint(1, map_size[0] - 2),
+            random.randint(1, map_size[1] - 2),
+        ]
 
     def isEmpty(self, pos, map):
         x = pos[0]

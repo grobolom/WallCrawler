@@ -49,20 +49,21 @@ class TestMapGenerator:
     def test_it_should_make_a_map(self):
         sut = MapGenerator()
 
-        rooms         = 30
-        min_room_size = [2, 2]
-        max_room_size = [10, 10]
-        map_size      = [80, 40]
+        rooms         = 2
+        min_room_size = 2
+        max_room_size = 2
+        map_size      = [20, 10]
 
         map = sut.getMap(rooms, min_room_size, max_room_size, map_size)
 
-        # assert self._mapHasAtLeastNRooms(rooms, map, min_room_size)
+        assert self._mapHasAtLeastNRooms(rooms, map, min_room_size)
 
-    def _mapHasAtLeastNRooms(rooms, map, min_room_size):
-        room_squares = min_room_size[0] * min_room_size[1]
+    def _mapHasAtLeastNRooms(self, rooms, map, min_room_size):
+        room_squares = min_room_size ** 2
         min_squares_needed = rooms * room_squares
-        for y, row in map.items():
-            for x, item in row.items():
+
+        for y, row in enumerate(map):
+            for x, item in enumerate(row):
                 if type(item) != app.Tile:
                     min_squares_needed -= 1
 
