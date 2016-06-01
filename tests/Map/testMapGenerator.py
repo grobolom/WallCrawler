@@ -2,6 +2,12 @@ import app
 from app.Map import MapGenerator
 
 class TestMapGenerator:
+    def test_it_should_determine_if_a_square_is_empty(self):
+        pos = [0, 0]
+        map = [[ app.Floor ]]
+        sut = MapGenerator()
+
+        assert sut.isEmpty(pos, map) == False
 
     def test_it_should_make_a_map(self):
         sut = MapGenerator()
