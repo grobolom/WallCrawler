@@ -1,6 +1,7 @@
 import app
 import app.Map
 import app.reducers
+import app.keyboard
 import app.utils
 import blessed
 
@@ -22,7 +23,7 @@ def main():
 
     s = app.Screen()
     v = app.MapView()
-    k = app.KeyboardActionBuilder()
+    k = app.keyboard.MapKeyHandler()
 
     positions = s.draw(map_size, screen_size, position)
 
@@ -33,7 +34,7 @@ def main():
     }
 
     reducers = [
-        app.reducers.PositionReducer(),
+        app.reducers.CharacterMover(),
         app.reducers.CharacterShovel(),
     ]
 
@@ -42,12 +43,14 @@ def main():
     st = app.utils.Store(reducers, state)
 
     while True:
+        state = st.getState()
         with blessed.Terminal().cbreak():
             key = blessed.Terminal().inkey()
+        print(blessed.Terminal().clear)
 
-        action    = k.getAction(key)
+        action    = k.getAction(key, state)
+
         st.dispatch(action)
-
         new_state = st.getState()
 
         c = new_state['character']
@@ -55,9 +58,10 @@ def main():
         positions = s.draw(map_size, screen_size, pos)
         objects = new_state['objects']
 
-        print(blessed.Terminal().clear)
         for l in v.draw(new_state['map']['tiles'], positions, objects):
             print(''.join(l))
+
+        print(action)
 
 if __name__ == "__main__":
     main()
