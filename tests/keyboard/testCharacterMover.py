@@ -1,0 +1,2 @@
+class TestCharacterMover:
+    pass
