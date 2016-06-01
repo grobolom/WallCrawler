@@ -5,9 +5,7 @@ class TestMapKeyHandler:
     def test_it_should_try_to_move_the_character_up(self):
         key = 'k'
         state = {
-            'character': {
-                'position': [1, 1]
-            },
+            'character': app.Character({'x': 1, 'y': 1})
         }
 
         expected = {

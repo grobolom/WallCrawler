@@ -5,15 +5,15 @@ class MapKeyHandler:
         if key not in [ 'h', 'j', 'k', 'l' ]:
             return None
 
-        to = self._getTo(key, state['character']['position'])
+        to = self._getTo(key, state['character'])
 
         return {
             'name': 'MOVE_CHARACTER',
             'to': to
         }
 
-    def _getTo(self, key, current_position):
-        (x, y) = current_position
+    def _getTo(self, key, character):
+        (x, y) = (character.x, character.y)
 
         if key == 'h':
             return [x - 1, y]
