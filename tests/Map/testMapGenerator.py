@@ -9,6 +9,17 @@ class TestMapGenerator:
 
         assert sut.isEmpty(pos, map) == False
 
+    def test_it_should_return_true_if_a_surrounding_square_is_full(self):
+        pos = [1, 1]
+        map = [
+            [ app.Floor, app.Tile, app.Tile ],
+            [ app.Floor, app.Tile, app.Tile ],
+            [ app.Floor, app.Tile, app.Tile ],
+        ]
+        sut = MapGenerator()
+
+        assert sut.hasANotEmptySquareNearby(pos, map) == True
+
     def test_it_should_make_a_map(self):
         sut = MapGenerator()
 

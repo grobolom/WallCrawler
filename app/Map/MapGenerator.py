@@ -15,3 +15,13 @@ class MapGenerator:
         x = pos[0]
         y = pos[1]
         return map[y][x] == None or type(map[y][x]) == app.Tile
+
+    def hasANotEmptySquareNearby(self, pos, map):
+        x = pos[0]
+        y = pos[1]
+
+        return not self.isEmpty([x - 1, y], map) or \
+               not self.isEmpty([x + 1, y], map) or \
+               not self.isEmpty([x, y - 1], map) or \
+               not self.isEmpty([x, y + 1], map)
+
