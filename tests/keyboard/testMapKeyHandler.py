@@ -53,3 +53,13 @@ class TestMapKeyHandler:
         }
 
         assert expected == MapKeyHandler().getAction(key, state)
+
+    def test_it_should_not_move_the_character_in_place_on_other_keys(self):
+        key = 'x'
+        state = {
+            'character': app.Character({'x': 1, 'y': 1})
+        }
+
+        expected = None
+
+        assert expected == MapKeyHandler().getAction(key, state)

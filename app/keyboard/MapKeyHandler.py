@@ -24,5 +24,3 @@ class MapKeyHandler:
             return [x, y + 1]
         if key == 'k':
             return [x, y - 1]
-
-        return current_position
