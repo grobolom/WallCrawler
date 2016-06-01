@@ -1,4 +1,5 @@
 import app
 
-class CharacterMover:
-    pass
+class MapKeyHandler:
+    def getAction(self, key, state):
+        return {}
