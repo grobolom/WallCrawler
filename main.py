@@ -7,6 +7,7 @@ import blessed
 
 def main():
 
+    """
     rm = app.Map.RoomMaker()
     s_map = {
         'tiles': [ [ app.Tile() for i in range(80) ] for j in range(20) ],
@@ -16,9 +17,14 @@ def main():
     s_map = rm.addRoom(s_map, (0, 0), (5, 5))
     s_map = rm.addRoom(s_map, (5, 4), (5, 5))
     s_map = rm.addRoom(s_map, (2, 5), (3, 3))
+    """
+
+    s = app.Map.MapGenerator()
+    map = s.getMap(30, 2, 8, [80, 20])
+    s_map = map
 
     position = [6, 6]
-    screen_size = [7, 7]
+    screen_size = [80, 20]
     map_size = s_map['size']
 
     s = app.Screen()
