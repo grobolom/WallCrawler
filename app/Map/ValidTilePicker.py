@@ -31,5 +31,7 @@ class ValidTilePicker:
         x = pos[0]
         y = pos[1]
         tiles = map['tiles']
+        objects = map['objects']
 
-        return type(tiles[y][x]) == app.Floor
+        return type(tiles[y][x]) == app.Floor and \
+               self.tileDoesNotHaveAnObjectOnIt(pos, objects)
