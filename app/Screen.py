@@ -8,8 +8,17 @@ class Screen:
         radius_x = (screen_size_x - 1) / 2
         radius_y = (screen_size_y - 1) / 2
 
-        indices_x = range(pos[0] - radius_x, pos[0] + radius_x + 1)
-        indices_y = range(pos[1] - radius_y, pos[1] + radius_y + 1)
+        x_offset = 1
+        y_offset = 1
+
+        if screen_size_x % 2 == 0:
+            x_offset += 1
+
+        if screen_size_y % 2 == 0:
+            y_offset += 1
+
+        indices_x = range(pos[0] - radius_x, pos[0] + radius_x + x_offset)
+        indices_y = range(pos[1] - radius_y, pos[1] + radius_y + y_offset)
 
         return [[ (x, y) for x in indices_x ] for y in indices_y ]
 
