@@ -26,3 +26,10 @@ class ValidTilePicker:
             if obj.position == pos:
                 return False
         return True
+
+    def isPlaceableTile(self, map, pos):
+        x = pos[0]
+        y = pos[1]
+        tiles = map['tiles']
+
+        return type(tiles[y][x]) == app.Floor

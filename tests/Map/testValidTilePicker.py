@@ -25,3 +25,15 @@ class TestValidTilePicker:
         tile = sut.getRandomEmptyFloorTile(map)
 
         assert tile['pos'] == [1, 0]
+
+    def test_it_should_only_pick_floor_tiles(self):
+        sut = ValidTilePicker()
+
+        map = {
+            'tiles': [[ app.Floor(), app.Wall() ]],
+            'size': [2, 1],
+            'objects': []
+        }
+
+        assert sut.isPlaceableTile(map, [0, 0]) == True
+        assert sut.isPlaceableTile(map, [1, 0]) == False
