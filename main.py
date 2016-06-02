@@ -63,7 +63,7 @@ def main():
         positions = s.draw(map_size, screen_size, pos)
         objects = new_state['objects']
 
-        print("0123456789012345678901234567890")
+        print("0123456789" * 8)
         for l in v.draw(new_state['map']['tiles'], positions, objects):
             print(''.join(l)) + '!'
         print(action)
