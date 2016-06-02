@@ -1,4 +1,5 @@
 import app
+import random
 from app.utils import VectorHandler
 
 class RoomMaker:
@@ -15,12 +16,15 @@ class RoomMaker:
         handler = VectorHandler()
         corner, size = handler.getPositiveVectors(room_corner, room_size)
 
+        random_char = random.choice('abcdefghijklmnop')
+
         for x in range(size[0]):
             for y in range(size[1]):
                 y_pos = y + corner[1]
                 x_pos = x + corner[0]
 
                 tiles[y_pos][x_pos] = app.Floor()
+                tiles[y_pos][x_pos].ascii_rep = random_char
 
         new_map['tiles'] = tiles
 
