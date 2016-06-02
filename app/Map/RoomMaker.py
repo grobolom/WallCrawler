@@ -7,17 +7,17 @@ class RoomMaker:
         new_map = map
         tiles   = map['tiles']
 
-        if self._roomGoesPastMapEdge(map['size'], room_corner, room_size):
-            raise Exception('room too big')
-
-        if self._roomOverlapsExistingFloor(tiles, room_corner, room_size):
-            raise Exception('room already exists here')
-
         handler = VectorHandler()
         corner, size = handler.getPositiveVectors(room_corner, room_size)
 
         if corner[0] < 0 or corner[1] < 0:
             raise Exception('room is awful')
+
+        if self._roomGoesPastMapEdge(map['size'], corner, size):
+            raise Exception('room too big')
+
+        if self._roomOverlapsExistingFloor(tiles, corner, size):
+            raise Exception('room already exists here')
 
         for x in range(size[0]):
             for y in range(size[1]):

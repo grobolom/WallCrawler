@@ -81,3 +81,21 @@ class TestRoomMaker(unittest.TestCase):
 
         assert type(map['tiles'][3][3]) == app.Floor
 
+    def test_it_should_not_add_an_overlapping_negative_room(self):
+        map = {
+            'tiles': [
+                [ app.Floor(), app.Floor(), app.Tile() ],
+                [ app.Floor(), app.Floor(), app.Tile() ],
+                [ app.Tile(), app.Tile(), app.Tile() ],
+            ],
+            'size': [3, 3]
+        }
+        room_corner = (2, 2)
+        room_size = (-2, -2)
+
+        r = RoomMaker()
+
+        with self.assertRaises(Exception) as context:
+            r.addRoom(map, room_corner, room_size)
+        assert 'room already exists here' in context.exception
+
