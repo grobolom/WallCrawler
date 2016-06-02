@@ -41,9 +41,9 @@ class TestMapView:
         tile = Tile()
         tile.ascii_rep = '.'
         map = [[ tile, tile ],[ tile, tile ]]
-        positions = [[(1, 1)]]
+        positions = [[(0, 0), (1, 0)],[(0, 1), (1, 1)]]
 
-        expected = [['@']]
+        expected = [['.', '.'],['.', '@']]
 
         assert expected == map_view.draw(map, positions, objects)
 
