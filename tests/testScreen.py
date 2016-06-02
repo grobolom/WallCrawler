@@ -56,7 +56,7 @@ class TestScreen(unittest.TestCase):
         ]
         assert expected == s.draw(map_size, screen_size, selected_point)
 
-    def test_it_should_correctly_draw_an_even_size_screen(self):
+    def test_it_should_draw_an_even_size_screen(self):
         s = Screen()
         map_size = [4, 4]
         screen_size = [4, 4]
@@ -66,6 +66,20 @@ class TestScreen(unittest.TestCase):
             [(0, 1), (1, 1), (2, 1), (3, 1)],
             [(0, 2), (1, 2), (2, 2), (3, 2)],
             [(0, 3), (1, 3), (2, 3), (3, 3)],
+        ]
+
+        assert expected == s.draw(map_size, screen_size, selected_point)
+
+    def test_it_should_draw_an_even_size_sub_screen(self):
+        s = Screen()
+        map_size = [6, 6]
+        screen_size = [4, 4]
+        selected_point = [5, 5]
+        expected = [
+            [(2, 2), (3, 2), (4, 2), (5, 2)],
+            [(2, 3), (3, 3), (4, 3), (5, 3)],
+            [(2, 4), (3, 4), (4, 4), (5, 4)],
+            [(2, 5), (3, 5), (4, 5), (5, 5)],
         ]
 
         assert expected == s.draw(map_size, screen_size, selected_point)
