@@ -35,13 +35,22 @@ class Screen:
         point_x = point[0]
         point_y = point[1]
 
-        if point_x + radius_x <= map_x and \
-           point_y + radius_y <= map_y and \
+        offset_x = 0
+        offset_y = 0
+
+        if screen_x % 2 == 0:
+            offset_x += 1
+
+        if screen_x % 2 == 0:
+            offset_y += 1
+
+        if point_x + radius_x + offset_x <= map_x and \
+           point_y + radius_y + offset_y <= map_y and \
            point_x - radius_x >= 0 and \
            point_y - radius_y >= 0:
             return point
 
-        fake_x = sorted([0 + radius_x, point_x, map_x - radius_x])[1]
-        fake_y = sorted([0 + radius_y, point_y, map_y - radius_y])[1]
+        fake_x = sorted([0 + radius_x, point_x, map_x - radius_x - offset_x])[1]
+        fake_y = sorted([0 + radius_y, point_y, map_y - radius_y - offset_y])[1]
 
         return [fake_x, fake_y]
