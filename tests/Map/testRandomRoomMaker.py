@@ -17,6 +17,6 @@ class TestRandomRoomMaker:
         sut = RandomRoomMaker()
 
         result = sut.getPossibleRoomSizes(5, 30)
-        expected = range(5, 30) + range(-5, -30, -1)
+        expected = range(5, 31) + range(-5, -31, -1)
 
         assert result == expected
