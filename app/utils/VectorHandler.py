@@ -16,11 +16,11 @@ class VectorHandler:
         y2 = v2[1]
 
         if x2 < 0:
-            x1 = x1 + x2
+            x1 = x1 + x2 + 1
             x2 = abs(x2)
 
         if y2 < 0:
-            y1 = y1 + y2
+            y1 = y1 + y2 + 1
             y2 = abs(y2)
 
         return ([x1, y1], [x2, y2])

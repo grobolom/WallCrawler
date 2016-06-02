@@ -7,7 +7,7 @@ class TestVectorHandler:
 
         first, second = VectorHandler().getPositiveVectors(v1, v2)
 
-        assert first == [2, 2]
+        assert first == [3, 3]
         assert second == [3, 3]
 
     def test_it_should_swap_only_negative_parts_of_the_second_vector(self):
@@ -16,5 +16,5 @@ class TestVectorHandler:
 
         first, second = VectorHandler().getPositiveVectors(v1, v2)
 
-        assert first == [5, 2]
+        assert first == [5, 3]
         assert second == [3, 3]
