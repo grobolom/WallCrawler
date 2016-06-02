@@ -7,18 +7,6 @@ import blessed
 
 def main():
 
-    """
-    rm = app.Map.RoomMaker()
-    s_map = {
-        'tiles': [ [ app.Tile() for i in range(80) ] for j in range(20) ],
-        'size': [80, 20],
-    }
-
-    s_map = rm.addRoom(s_map, (0, 0), (5, 5))
-    s_map = rm.addRoom(s_map, (5, 4), (5, 5))
-    s_map = rm.addRoom(s_map, (2, 5), (3, 3))
-    """
-
     s = app.Map.MapGenerator()
     map = s.getMap(30, 2, 8, [80, 20])
     s_map = map
@@ -31,12 +19,23 @@ def main():
     v = app.MapView()
     k = app.keyboard.MapKeyHandler()
 
+    vtp = app.Map.ValidTilePicker()
+
     positions = s.draw(map_size, screen_size, position)
+
+    objects = []
+    s_map['objects'] = []
+    for e in range(10):
+        tile = vtp.getRandomEmptyFloorTile(map)
+        x = tile['pos'][0]
+        y = tile['pos'][1]
+        o = app.Object(position=tile['pos'],x=x,y=y)
+        objects.append(o)
 
     state = {
         'map': s_map,
         'character': app.Character(),
-        'objects': [],
+        'objects': objects,
     }
 
     reducers = [
@@ -68,6 +67,9 @@ def main():
             print(''.join(l))
 
         print(action)
+        for o in objects:
+            if o.type != 'char':
+                print(o.position)
 
 if __name__ == "__main__":
     main()
