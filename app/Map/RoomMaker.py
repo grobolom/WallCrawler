@@ -26,9 +26,6 @@ class RoomMaker:
 
                 tiles[y_pos][x_pos] = app.Floor()
 
-        tiles[corner[1]][corner[0]].ascii_rep = '*'
-        tiles[room_corner[1]][room_corner[0]].ascii_rep = '+'
-
         new_map['tiles'] = tiles
 
         return new_map
