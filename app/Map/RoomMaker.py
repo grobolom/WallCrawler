@@ -16,7 +16,8 @@ class RoomMaker:
         handler = VectorHandler()
         corner, size = handler.getPositiveVectors(room_corner, room_size)
 
-        random_char = random.choice('abcdefghijklmnop')
+        if corner[0] < 0 or corner[1] < 0:
+            raise Exception('room is awful')
 
         for x in range(size[0]):
             for y in range(size[1]):
@@ -24,7 +25,9 @@ class RoomMaker:
                 x_pos = x + corner[0]
 
                 tiles[y_pos][x_pos] = app.Floor()
-                tiles[y_pos][x_pos].ascii_rep = random_char
+
+        tiles[corner[1]][corner[0]].ascii_rep = '*'
+        tiles[room_corner[1]][room_corner[0]].ascii_rep = '+'
 
         new_map['tiles'] = tiles
 
