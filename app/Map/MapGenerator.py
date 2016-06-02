@@ -27,7 +27,6 @@ class MapGenerator:
                 if is_valid:
                     try:
                         map = RoomMaker().addRoom(map, r, rs)
-                        print(r, rs)
                     except Exception:
                         continue
                     break;
