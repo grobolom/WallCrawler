@@ -8,11 +8,11 @@ import blessed
 def main():
 
     s = app.Map.MapGenerator()
-    map = s.getMap(5, 4, 5, [80, 20])
+    map = s.getMap(30, 1, 10, [80, 20])
     s_map = map
 
     position = [0, 0]
-    screen_size = [80, 21]
+    screen_size = [80, 20]
     map_size = s_map['size']
 
     s = app.Screen()
@@ -34,7 +34,7 @@ def main():
 
     state = {
         'map': s_map,
-        'character': app.Character(x=5,y=5),
+        'character': app.Character(x=41,y=11),
         'objects': objects,
     }
 
@@ -66,7 +66,6 @@ def main():
         print("0123456789" * 8)
         for l in v.draw(new_state['map']['tiles'], positions, objects):
             print(''.join(l)) + '!'
-        print(action)
 
 if __name__ == "__main__":
     main()
