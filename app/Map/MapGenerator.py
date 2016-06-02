@@ -6,16 +6,17 @@ from . import RandomRoomMaker
 
 class MapGenerator:
     def getMap(self, rooms, min_room_size, max_room_size, map_size):
+        map_x = map_size[0]
+        map_y = map_size[1]
 
         map = { 
             'tiles': [[
-                app.Tile() for i in range(map_size[0]) ]
-                   for j in range(map_size[1])
-            ],
+                app.Tile() for i in range(map_x) ]
+                           for j in range(map_y) ],
             'size': map_size,
         }
 
-        map = RoomMaker().addRoom(map, [0, 0], [4, 4])
+        map = RoomMaker().addRoom(map, [map_x // 2, map_y // 2], [4, 4])
 
         for i in range(rooms):
             while True:
