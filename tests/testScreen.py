@@ -55,3 +55,16 @@ class TestScreen(unittest.TestCase):
             [(0, 9), (1, 9), (2, 9)],
         ]
         assert expected == s.draw(map_size, screen_size, selected_point)
+
+    def test_it_should_correctly_draw_a_full_screen(self):
+        s = Screen()
+        map_size = [3, 3]
+        screen_size = [3, 3]
+        selected_point = [0, 0]
+        expected = [
+            [(0, 0), (1, 0), (2, 0)],
+            [(0, 1), (1, 1), (2, 1)],
+            [(0, 2), (1, 2), (2, 2)],
+        ]
+
+        assert expected == s.draw(map_size, screen_size, selected_point)
