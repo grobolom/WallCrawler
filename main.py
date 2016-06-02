@@ -29,8 +29,8 @@ def main():
         tile = vtp.getRandomEmptyFloorTile(map)
         x = tile['pos'][0]
         y = tile['pos'][1]
-        o = app.Object(position=tile['pos'],x=x,y=y)
-        # objects.append(o)
+        o = app.Monster(position=tile['pos'],x=x,y=y)
+        objects.append(o)
 
     state = {
         'map': s_map,
