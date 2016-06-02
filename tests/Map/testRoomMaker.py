@@ -54,3 +54,17 @@ class TestRoomMaker(unittest.TestCase):
         map = r.addRoom(map, room_corner, room_size)
 
         assert type(map['tiles'][8][8]) == app.Floor
+
+    def test_it_should_add_a_negative_room(self):
+        map = {
+            'tiles': [[ app.Tile() for i in range(80) ] for j in range(20) ],
+            'size': [80, 20]
+        }
+        room_corner = (4, 4)
+        room_size = (2, -2)
+
+        r = RoomMaker()
+        map = r.addRoom(map, room_corner, room_size)
+
+        assert type(map['tiles'][3][5]) == app.Floor
+

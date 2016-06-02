@@ -1,4 +1,5 @@
 import app
+from app.utils import VectorHandler
 
 class RoomMaker:
     def addRoom(self, map, room_corner, room_size):
@@ -11,9 +12,15 @@ class RoomMaker:
         if self._roomOverlapsExistingFloor(tiles, room_corner, room_size):
             raise Exception('room already exists here')
 
-        for x in range(room_size[0]):
-            for y in range(room_size[1]):
-                tiles[y + room_corner[1]][x + room_corner[0]] = app.Floor()
+        handler = VectorHandler()
+        corner, size = handler.getPositiveVectors(room_corner, room_size)
+
+        for x in range(size[0]):
+            for y in range(size[1]):
+                y_pos = y + corner[1]
+                x_pos = x + corner[0]
+
+                tiles[y_pos][x_pos] = app.Floor()
 
         new_map['tiles'] = tiles
 

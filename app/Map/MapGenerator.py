@@ -17,13 +17,12 @@ class MapGenerator:
 
         map = RoomMaker().addRoom(map, [0, 0], [4, 4])
 
-        x = 0
         for i in range(rooms):
             while True:
                 r = self.getRandomMapSquare(map_size)
                 rs = RandomRoomMaker().getRandomRoom(min_room_size, max_room_size)
-
                 is_valid = self.isValidPlacementSpot(r, rs, map['tiles'], map_size)
+
                 if is_valid:
                     map = RoomMaker().addRoom(map, r, rs)
                     break;
