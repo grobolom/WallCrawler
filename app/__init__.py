@@ -3,6 +3,7 @@ from .MapView import MapView
 from .KeyboardActionBuilder import KeyboardActionBuilder
 
 from .Object import Object
+from .Monster import Monster
 from .Character import Character
 
 from .Tile import Tile
