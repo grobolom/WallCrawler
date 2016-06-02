@@ -6,13 +6,13 @@ class TestValidTilePicker:
         sut = ValidTilePicker()
 
         map = {
-            'tiles': [[ app.Wall(), app.Floor() ]],
-            'size': [2, 1],
+            'tiles': [[ app.Floor() ]],
+            'size': [1, 1],
             'objects': [],
         }
         tile = sut.getRandomEmptyFloorTile(map)
 
-        assert tile['pos'] == [1, 0]
+        assert tile['pos'] == [0, 0]
 
     def test_it_should_not_pick_a_tile_with_an_object_on_it(self):
         sut = ValidTilePicker()

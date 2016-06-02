@@ -13,13 +13,12 @@ class ValidTilePicker:
             y = random.randint(0, map_size[1] - 1)
             pos = [x, y]
 
-            if type(tiles[y][x]) == app.Floor and \
-               self.tileDoesNotHaveAnObjectOnIt(pos, objects):
-
+            if self.isPlaceableTile(map, pos):
                 return {
                     'pos': pos,
                     'tile': tiles[y][x],
                 }
+        # TODO: fix if every tile is taken
 
     def tileDoesNotHaveAnObjectOnIt(self, pos, objects):
         for obj in objects:
