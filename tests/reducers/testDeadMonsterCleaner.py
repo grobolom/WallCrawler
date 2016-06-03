@@ -2,29 +2,16 @@ import app
 from app.reducers import DeadMonsterCleaner
 
 class TestDeadMonsterCleaner:
-    def test_it_should_remove_a_monster_with_zero_health(self):
+    def test_it_should_remove_all_dead_monsters(self):
         sut = DeadMonsterCleaner()
 
-        dead_monster = app.Monster(id = 1, hp = 0)
-        action = {}
-        state = {
-            'objects': [ dead_monster ]
-        }
-
-        new_state = sut.reduce(state, action)
-
-        assert new_state['objects'] == []
-
-    def test_it_should_remove_all_monsters_with_less_than_one_health(self):
-        sut = DeadMonsterCleaner()
-
-        dead_monster = app.Monster(id = 1, hp = 0)
-        live_monster = app.Monster(id = 2, hp = 10)
-        superdead_monster = app.Monster(id = 3, hp = -5)
+        dead_monster = app.Monster(id = 1, hp = 0, dead = True)
+        live_monster = app.Monster(id = 2, hp = 10, dead = False)
+        dead_with_hp = app.Monster(id = 3, hp = -5, dead = True)
 
         action = {}
         state = {
-            'objects': [ dead_monster, live_monster, superdead_monster ]
+            'objects': [ dead_monster, live_monster, dead_with_hp ]
         }
 
         new_state = sut.reduce(state, action)
@@ -35,8 +22,8 @@ class TestDeadMonsterCleaner:
     def test_it_should_only_remove_monsters(self):
         sut = DeadMonsterCleaner()
 
-        dead_monster = app.Monster(id = 1, hp = 0)
-        character = app.Character(id = 2)
+        dead_monster = app.Monster(id = 1, dead = True)
+        character = app.Character(id = 2, dead = True)
 
         action = {}
         state = {

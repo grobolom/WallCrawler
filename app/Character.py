@@ -8,6 +8,7 @@ class Character(Object):
         self.type = 'char'
         self.hp = 10
         self.xp = 0
+        self.dead = False
 
         for dictionary in args:
             for key in dictionary:
@@ -15,3 +16,6 @@ class Character(Object):
 
         for key in kwargs:
             setattr(self, key, kwargs[key])
+
+    def isDead(self):
+        return self.dead
