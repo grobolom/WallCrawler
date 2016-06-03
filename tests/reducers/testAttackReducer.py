@@ -22,7 +22,7 @@ class TestAttackReducer:
             'objects': [ monster ]
         }
 
-        new_state = sut.reduce(action, state)
+        new_state = sut.reduce(state, action)
 
         assert new_state['objects'][0].hp == END_HP
 
@@ -47,7 +47,7 @@ class TestAttackReducer:
             'objects': [ monster_right, monster_wrong ]
         }
 
-        new_state = sut.reduce(action, state)
+        new_state = sut.reduce(state, action)
 
         assert new_state['objects'][0].hp == END_HP
         assert new_state['objects'][1].hp == START_HP
