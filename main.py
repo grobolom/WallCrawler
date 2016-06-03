@@ -46,6 +46,7 @@ def main():
         app.reducers.CharacterMover(),
         app.reducers.CharacterShovel(),
         app.reducers.DeadMonsterCleaner(),
+        app.reducers.GameOver(),
     ]
 
     key = None
@@ -77,6 +78,10 @@ def main():
             print(''.join(l)) + '!'
         print("0123456789" * 8)
         print(action)
+
+        if 'game_over' in new_state:
+            break;
+    print('seeya!')
 
 if __name__ == "__main__":
     main()
