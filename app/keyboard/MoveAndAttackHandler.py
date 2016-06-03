@@ -27,7 +27,7 @@ class MoveAndAttackHandler:
 
     def getSquare(self, character, x, y):
         pos = character.position
-        return [ pos[0] + x, pos[0] + y ]
+        return [ pos[0] + x, pos[1] + y ]
 
     def getMonster(self, square, objects):
         for o in objects:
