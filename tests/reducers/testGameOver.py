@@ -1,12 +1,33 @@
+import app
 from app.reducers import GameOver
 
 class TestGameOver:
-    def it_should_end_the_game_when_the_action_is_game_over(self):
+    def test_it_should_end_the_game_when_the_action_is_game_over(self):
         sut = GameOver()
 
         action = { 'name': 'GAME_OVER' }
-        state = {}
+        state = { 'objects': [] }
 
         new_state = sut.reduce(state, action)
 
         assert new_state['game_over'] == True
+
+    def test_it_should_end_the_game_when_there_are_no_monsters_left(self):
+        sut = GameOver()
+
+        action = { 'name': 'RANDOM' }
+        state = { 'objects': [] }
+
+        new_state = sut.reduce(state, action)
+
+        assert new_state['game_over'] == True
+
+    def test_it_should_not_end_the_game_if_there_are_monsters_left(self):
+        sut = GameOver()
+
+        action = { 'name': 'RANDOM' }
+        state = { 'objects': [ app.Monster() ] }
+
+        new_state = sut.reduce(state, action)
+
+        assert 'game_over' not in state
