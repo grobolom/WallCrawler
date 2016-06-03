@@ -3,7 +3,7 @@ class PositionReducer:
         new_state = state
 
         character = state['character']
-        position = [character.x, character.y]
+        position = character.position
 
         map_size = state['map']['size']
 
@@ -18,8 +18,7 @@ class PositionReducer:
         if name == 'MOVE_RIGHT':
             position[0] = min(map_size[0] - 1, position[0] + 1)
 
-        character.x = position[0]
-        character.y = position[1]
+        character.position = position
 
         new_state['character'] = character
 
