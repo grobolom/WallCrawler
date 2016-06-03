@@ -27,7 +27,8 @@ def main():
     objects = []
     s_map['objects'] = []
     id = 2
-    for e in range(10):
+    monsters = 1
+    for e in range(monsters):
         tile = vtp.getRandomEmptyFloorTile(map)
         x = tile['pos'][0]
         y = tile['pos'][1]
@@ -52,18 +53,20 @@ def main():
     key = None
 
     st = app.utils.Store(reducers, state)
+    term = blessed.Terminal()
 
+    print(term.clear)
     while True:
+        term.enter_fullscreen()
         state = st.getState()
-        with blessed.Terminal().cbreak():
-            key = blessed.Terminal().inkey()
-        # print(blessed.Terminal().clear)
+        with term.cbreak():
+            key = term.inkey()
+        # print(term.clear)
         # for o in state['objects']:
         #    print(vars(o))
 
         action    = k.getAction(key, state)
         action    = mah.getAction(key, state)
-        print(action)
 
         st.dispatch(action)
         new_state = st.getState()
@@ -73,14 +76,17 @@ def main():
         positions = s.draw(map_size, screen_size, pos)
         objects = new_state['objects']
 
-        print("0123456789" * 8)
-        for l in v.draw(new_state['map']['tiles'], positions, objects):
-            print(''.join(l)) + '!'
-        print("0123456789" * 8)
-        print(action)
+        with term.location(0, 0):
+            print("0123456789" * 8)
+            for l in v.draw(new_state['map']['tiles'], positions, objects):
+                print(''.join(l)) + '!'
+            print("0123456789" * 8)
+            print(action)
 
         if 'game_over' in new_state:
+            term.exit_fullscreen()
             break;
+    print(term.clear)
     print('seeya!')
 
 if __name__ == "__main__":
