@@ -51,7 +51,7 @@ def main():
         state = st.getState()
         with blessed.Terminal().cbreak():
             key = blessed.Terminal().inkey()
-        # print(blessed.Terminal().clear)
+        print(blessed.Terminal().clear)
 
         action    = k.getAction(key, state)
 
@@ -66,6 +66,8 @@ def main():
         print("0123456789" * 8)
         for l in v.draw(new_state['map']['tiles'], positions, objects):
             print(''.join(l)) + '!'
+        print("0123456789" * 8)
+        print(action)
 
 if __name__ == "__main__":
     main()
