@@ -10,7 +10,7 @@ class TestPositionReducer:
                 'size': [6, 6],
             }
         }
-        action = { 'name': 'MOVE_UP' }
+        action = { 'name': 'MOVE_CHARACTER', 'to': [5, 4] }
         new_state = reducer.reduce(state, action)
 
         assert new_state['character'].position == [5, 4]

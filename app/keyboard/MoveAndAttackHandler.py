@@ -1,6 +1,6 @@
 class MoveAndAttackHandler:
     def getAction(self, key, state):
-        objects = state['map']['objects']
+        objects = state['objects']
         character = state['character']
 
         if key == 'l':

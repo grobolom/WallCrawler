@@ -18,6 +18,7 @@ def main():
     s = app.Screen()
     v = app.MapView()
     k = app.keyboard.MapKeyHandler()
+    mah = app.keyboard.MoveAndAttackHandler()
 
     vtp = app.Map.ValidTilePicker()
 
@@ -34,7 +35,7 @@ def main():
 
     state = {
         'map': s_map,
-        'character': app.Character(x=41,y=11),
+        'character': app.Character(position=[41, 11]),
         'objects': objects,
     }
 
@@ -52,8 +53,12 @@ def main():
         with blessed.Terminal().cbreak():
             key = blessed.Terminal().inkey()
         print(blessed.Terminal().clear)
+        for o in state['objects']:
+            print(vars(o))
 
         action    = k.getAction(key, state)
+        action    = mah.getAction(key, state)
+        print(action)
 
         st.dispatch(action)
         new_state = st.getState()
