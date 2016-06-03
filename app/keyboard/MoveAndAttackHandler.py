@@ -1,2 +1,3 @@
 class MoveAndAttackHandler:
-    pass
+    def getAction(self, key, state):
+        return {}
