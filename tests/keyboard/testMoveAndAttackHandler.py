@@ -11,7 +11,8 @@ class TestMoveAndAttackHandler:
                 'tiles': [[ app.Floor(), app.Floor() ]],
                 'size': [2, 1],
                 'objects': [ character, monster ],
-            }
+            },
+            'character': character,
         }
 
         key = 'KEY_RIGHT'
