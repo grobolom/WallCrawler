@@ -82,8 +82,8 @@ def main():
                 print(''.join(l)) + '!'
             print("0123456789" * 8)
             print(action)
-            print('hp:' + str(state['character'].hp))
-            print('xp:' + str(state['character'].xp))
+            print('hp:' + str(new_state['character'].hp))
+            print('xp:' + str(new_state['character'].xp))
 
         if 'game_over' in new_state:
             term.exit_fullscreen()
