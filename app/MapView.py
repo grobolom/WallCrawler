@@ -22,12 +22,12 @@ class MapView:
         min_pos = positions[0][0]
         max_pos = positions[rows][columns]
 
-        return obj.x >= min_pos[0] and \
-                obj.y >= min_pos[1] and \
-                obj.x <= max_pos[0] and \
-                obj.y <= max_pos[1]
+        return obj.position[0] >= min_pos[0] and \
+                obj.position[1] >= min_pos[1] and \
+                obj.position[0] <= max_pos[0] and \
+                obj.position[1] <= max_pos[1]
 
 
     def _getScreenPos(self, positions, obj):
         min_pos = positions[0][0]
-        return (obj.x - min_pos[0], obj.y - min_pos[1])
+        return (obj.position[0] - min_pos[0], obj.position[1] - min_pos[1])

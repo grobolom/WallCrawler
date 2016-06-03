@@ -3,8 +3,7 @@ from app import MapView
 
 class MockObject(object):
     def __init__(self):
-        self.x = 1
-        self.y = 1
+        self.position = [1, 1]
         self.ascii_rep = '@'
 
 class TestMapView:
@@ -49,12 +48,10 @@ class TestMapView:
 
     def test_it_should_not_draw_objects_off_the_screen(self):
         obj1 = MockObject()
-        obj1.x = 0
-        obj1.y = 1
+        obj1.position = [0, 1]
 
         obj2 = MockObject()
-        obj2.x = 2
-        obj2.x = 2
+        obj2.position = [2, 2]
 
         objects = [ obj1, obj2 ]
 
