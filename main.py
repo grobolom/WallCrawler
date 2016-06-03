@@ -26,11 +26,13 @@ def main():
 
     objects = []
     s_map['objects'] = []
+    id = 2
     for e in range(10):
         tile = vtp.getRandomEmptyFloorTile(map)
         x = tile['pos'][0]
         y = tile['pos'][1]
-        o = app.Monster(position=tile['pos'],x=x,y=y)
+        id += 1
+        o = app.Monster(position=tile['pos'],x=x,y=y,id=id,hp=2)
         objects.append(o)
 
     state = {
@@ -40,8 +42,10 @@ def main():
     }
 
     reducers = [
+        app.reducers.AttackReducer(),
         app.reducers.CharacterMover(),
         app.reducers.CharacterShovel(),
+        app.reducers.DeadMonsterCleaner(),
     ]
 
     key = None
@@ -52,9 +56,9 @@ def main():
         state = st.getState()
         with blessed.Terminal().cbreak():
             key = blessed.Terminal().inkey()
-        print(blessed.Terminal().clear)
-        for o in state['objects']:
-            print(vars(o))
+        # print(blessed.Terminal().clear)
+        # for o in state['objects']:
+        #    print(vars(o))
 
         action    = k.getAction(key, state)
         action    = mah.getAction(key, state)
