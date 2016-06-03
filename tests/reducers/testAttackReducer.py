@@ -26,6 +26,29 @@ class TestAttackReducer:
 
         assert new_state['objects'][0].hp == END_HP
 
+    # TODO: switch this to 'character dies' instead of 'hp below 1'
+    # we should be using actual game terms
+    def test_it_should_increase_character_xp_if_hp_gets_below_1(self):
+        sut = AttackReducer()
+
+        character = app.Character(xp = 0)
+        monster = app.Monster(id = 2, hp = 1, xp = 2)
+
+        action = {
+            'name': 'ATTACK_CHARACTER',
+            'source': character,
+            'target': monster,
+        }
+
+        state = {
+            'character': character,
+            'objects': [ monster ],
+        }
+
+        new_state = sut.reduce(state, action)
+
+        assert new_state['character'].xp == 2
+
     def test_it_should_only_target_health_with_correct_id(self):
         sut = AttackReducer()
 
