@@ -31,3 +31,19 @@ class TestDeadMonsterCleaner:
 
         assert len(new_state['objects']) == 1
         assert new_state['objects'][0].id == 2
+
+    def test_it_should_only_remove_monsters(self):
+        sut = DeadMonsterCleaner()
+
+        dead_monster = app.Monster(id = 1, hp = 0)
+        character = app.Character(id = 2)
+
+        action = {}
+        state = {
+            'objects': [ dead_monster, character ]
+        }
+
+        new_state = sut.reduce(state, action)
+
+        assert len(new_state['objects']) == 1
+        assert new_state['objects'][0].id == 2

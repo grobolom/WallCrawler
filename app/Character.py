@@ -6,6 +6,7 @@ class Character(Object):
         self.y = 0
         self.ascii_rep = 'v'
         self.type = 'char'
+        self.hp = 10
 
         for dictionary in args:
             for key in dictionary:
