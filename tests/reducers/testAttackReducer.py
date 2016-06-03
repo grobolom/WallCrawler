@@ -28,7 +28,7 @@ class TestAttackReducer:
 
     # TODO: switch this to 'character dies' instead of 'hp below 1'
     # we should be using actual game terms
-    def test_it_should_increase_character_xp_if_hp_gets_below_1(self):
+    def test_it_should_mark_monster_as_dead_if_hp_gets_below_1(self):
         sut = AttackReducer()
 
         character = app.Character(xp = 0)
@@ -47,7 +47,7 @@ class TestAttackReducer:
 
         new_state = sut.reduce(state, action)
 
-        assert new_state['character'].xp == 2
+        assert new_state['objects'][0].isDead() == True
 
     def test_it_should_only_target_health_with_correct_id(self):
         sut = AttackReducer()

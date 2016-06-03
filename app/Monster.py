@@ -9,6 +9,8 @@ class Monster(Object):
         self.ascii_rep = 'R'
         self.name = 'monster'
         self.type = 'monster'
+        self.dead = False
+        self.killed_by = None
 
         for dictionary in args:
             for key in dictionary:
@@ -16,3 +18,6 @@ class Monster(Object):
 
         for key in kwargs:
             setattr(self, key, kwargs[key])
+
+    def isDead(self):
+        return self.dead
