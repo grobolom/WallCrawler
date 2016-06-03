@@ -3,13 +3,13 @@ class MoveAndAttackHandler:
         objects = state['map']['objects']
         character = state['character']
 
-        if key == 'KEY_RIGHT':
+        if key == 'l':
             square = self.getSquare(character, 1, 0)
-        elif key == 'KEY_LEFT':
+        elif key == 'h':
             square = self.getSquare(character, -1, 0)
-        elif key == 'KEY_UP':
+        elif key == 'k':
             square = self.getSquare(character, 0, -1)
-        elif key == 'KEY_DOWN':
+        elif key == 'j':
             square = self.getSquare(character, 0, 1)
 
         monster = self.getMonster(square, objects)

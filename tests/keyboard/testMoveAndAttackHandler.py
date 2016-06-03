@@ -15,7 +15,7 @@ class TestMoveAndAttackHandler:
             'character': character,
         }
 
-        key = 'KEY_RIGHT'
+        key = 'l'
 
         sut = MoveAndAttackHandler()
 
