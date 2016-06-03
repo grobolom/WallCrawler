@@ -10,9 +10,9 @@ class TestMoveAndAttackHandler:
             'map': {
                 'tiles': [[ app.Floor(), app.Floor() ]],
                 'size': [2, 1],
-                'objects': [ character, monster ],
             },
             'character': character,
+            'objects': [ character, monster ],
         }
 
         key = 'l'
