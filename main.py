@@ -27,7 +27,7 @@ def main():
     objects = []
     s_map['objects'] = []
     id = 2
-    monsters = 1
+    monsters = 2
     for e in range(monsters):
         tile = vtp.getRandomEmptyFloorTile(map)
         x = tile['pos'][0]
@@ -82,6 +82,8 @@ def main():
                 print(''.join(l)) + '!'
             print("0123456789" * 8)
             print(action)
+            print('hp:' + str(state['character'].hp))
+            print('xp:' + str(state['character'].xp))
 
         if 'game_over' in new_state:
             term.exit_fullscreen()
