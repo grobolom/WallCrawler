@@ -9,7 +9,7 @@ class TestCharacterMover:
         }
 
         state = {
-            'character': app.Character({'x': 0, 'y': 0 }),
+            'character': app.Character(position = [0, 0]),
             'map': {
                 'tiles': [[ app.Floor(), app.Floor() ]],
                 'size': [2, 1],
@@ -19,8 +19,7 @@ class TestCharacterMover:
         reducer = CharacterMover()
         new_state = reducer.reduce(state, action)
 
-        assert new_state['character'].x == 1
-        assert new_state['character'].y == 0
+        assert new_state['character'].position == [1, 0]
 
     def test_it_should_not_move_the_character_into_a_wall(self):
         action = {
@@ -29,7 +28,7 @@ class TestCharacterMover:
         }
 
         state = {
-            'character': app.Character({'x': 0, 'y': 0 }),
+            'character': app.Character(position = [0, 0]),
             'map': {
                 'tiles': [[ app.Floor(), app.Wall() ]],
                 'size': [2, 1],
@@ -39,8 +38,7 @@ class TestCharacterMover:
         reducer = CharacterMover()
         new_state = reducer.reduce(state, action)
 
-        assert new_state['character'].x == 0
-        assert new_state['character'].y == 0
+        assert new_state['character'].position == [0, 0]
 
     def test_it_should_not_move_the_character_out_of_bounds(self):
         action = {
@@ -49,7 +47,7 @@ class TestCharacterMover:
         }
 
         state = {
-            'character': app.Character({'x': 0, 'y': 0 }),
+            'character': app.Character(position = [0, 0]),
             'map': {
                 'tiles': [[ app.Floor(), app.Wall() ]],
                 'size': [2, 1],
@@ -59,5 +57,4 @@ class TestCharacterMover:
         reducer = CharacterMover()
         new_state = reducer.reduce(state, action)
 
-        assert new_state['character'].x == 0
-        assert new_state['character'].y == 0
+        assert new_state['character'].position == [0, 0]

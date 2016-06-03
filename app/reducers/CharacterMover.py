@@ -20,7 +20,7 @@ class CharacterMover:
 
         if self._tileIsInbounds(to, map_size) and \
            self._targetTileIsWalkable(to, map):
-            (character.x, character.y) = to
+            character.position = to
 
         new_state = state
         new_state['character'] = character
