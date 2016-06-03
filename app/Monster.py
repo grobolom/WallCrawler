@@ -5,6 +5,7 @@ class Monster(Object):
         super(Object, self).__init__()
 
         self.hp = 10
+        self.xp = 2
         self.ascii_rep = 'R'
         self.name = 'monster'
         self.type = 'monster'
