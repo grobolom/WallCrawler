@@ -2,6 +2,8 @@ class DeadMonsterCleaner:
     def reduce(self, state, action):
         new_state = state
 
-        state['objects'] = []
+        objects = new_state['objects']
+        new_objects = [ o for o in objects if o.hp > 0 ]
+        new_state['objects'] = new_objects
 
-        return state
+        return new_state
