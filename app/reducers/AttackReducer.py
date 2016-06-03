@@ -4,6 +4,20 @@ class AttackReducer:
             return state
 
         new_state = state
-        new_state['objects'][0].hp -= 1
+
+        target_id = action['target'].id
+        objects = new_state['objects']
+
+        objects = self.changeHealthById(objects, target_id, -1)
+
+        new_state['objects'] = objects
 
         return new_state
+
+    def changeHealthById(self, objects, id, change):
+        new_objects = objects
+        for o in new_objects:
+            if o.id == id:
+                o.hp += change
+                break;
+        return new_objects
