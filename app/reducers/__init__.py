@@ -5,3 +5,4 @@ from .AttackReducer import AttackReducer
 from .DeadMonsterCleaner import DeadMonsterCleaner
 from .GameOver import GameOver
 from .XpAssigner import XpAssigner
+from .MonsterMover import MonsterMover
