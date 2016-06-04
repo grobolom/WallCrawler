@@ -34,3 +34,19 @@ class TestDeadMonsterCleaner:
 
         assert len(new_state['objects']) == 1
         assert new_state['objects'][0].id == 2
+
+    def test_it_should_give_xp_to_killers(self):
+        sut = DeadMonsterCleaner()
+
+        character = app.Character(id = 2, xp = 2)
+        monster = app.Monster(xp = 3, id = 1, dead = True, source = character)
+
+        action = {}
+        state = {
+            'objects': [ character ]
+        }
+
+        new_state = sut.reduce(state, action)
+
+        assert(len(new_state['objects'])) == 1
+        assert new_state['objects'][0].xp == 5
