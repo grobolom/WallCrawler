@@ -47,7 +47,9 @@ class ShadowCaster:
         top_slope = start_sectors[0][0]
         bottom_slope = start_sectors[0][1]
 
+        sector = []
         sectors = []
+        dumped = False
         for k, current in enumerate(column):
             y = height - k
             square = [height, y]
@@ -56,12 +58,19 @@ class ShadowCaster:
 
             if last_square != current and current == '.':
                 top_slope = (float(y) + 0.5) / (float(height) + 0.5)
+                dumped = False
 
             if last_square != current and current == '#':
                 bottom_slope = (float(y) + 0.5) / (float(height) - 0.5)
+                sector = [ top_slope, bottom_slope ]
+                bottom_slope = 0.0
+                sectors += [ sector ]
+                dumped = True
 
+            sector = [top_slope, bottom_slope]
             last_square = current
 
-        sectors += [ [top_slope, bottom_slope] ]
+        if not dumped:
+            sectors += [ sector ]
 
         return sectors

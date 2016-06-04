@@ -57,9 +57,8 @@ class TestShadowCaster:
         column = ['.','.','#','.']
         start_sectors = ( [1.0, 0.0], )
         result = sut.getSectors(column, start_sectors)
-        """
-        assert result == (
+
+        assert result == [
             [ 1.0, 1.5 / 2.5 ],
             [ 0.5 / 3.5, 0.0 ],
-        )
-        """
+        ]
