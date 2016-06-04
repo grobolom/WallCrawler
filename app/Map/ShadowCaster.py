@@ -47,13 +47,12 @@ class ShadowCaster:
         top_slope = start_sectors[0][0]
         bottom_slope = start_sectors[0][1]
 
+        sectors = []
         for k, current in enumerate(column):
             y = height - k
             square = [height, y]
             if not self.squareInSector(square, start_sectors[0]):
                 continue
-
-            print(height, y, last_square, current)
 
             if last_square != current and current == '.':
                 top_slope = (float(y) + 0.5) / (float(height) + 0.5)
@@ -63,5 +62,6 @@ class ShadowCaster:
 
             last_square = current
 
+        sectors += [ [top_slope, bottom_slope] ]
 
-        return ( [top_slope, bottom_slope ], )
+        return sectors
