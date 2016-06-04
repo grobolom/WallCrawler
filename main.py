@@ -46,6 +46,7 @@ def main():
         app.reducers.AttackReducer(),
         app.reducers.CharacterMover(),
         app.reducers.CharacterShovel(),
+        app.reducers.XpAssigner(),
         app.reducers.DeadMonsterCleaner(),
         app.reducers.GameOver(),
     ]
@@ -61,9 +62,6 @@ def main():
         state = st.getState()
         with term.cbreak():
             key = term.inkey()
-        # print(term.clear)
-        # for o in state['objects']:
-        #    print(vars(o))
 
         action    = k.getAction(key, state)
         action    = mah.getAction(key, state)
@@ -77,10 +75,8 @@ def main():
         objects = new_state['objects']
 
         with term.location(0, 0):
-            print("0123456789" * 8)
             for l in v.draw(new_state['map']['tiles'], positions, objects):
-                print(''.join(l)) + '!'
-            print("0123456789" * 8)
+                print(''.join(l))
             print(action)
             print('hp:' + str(new_state['character'].hp))
             print('xp:' + str(new_state['character'].xp))
