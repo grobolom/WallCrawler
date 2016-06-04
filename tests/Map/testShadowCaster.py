@@ -18,3 +18,16 @@ class TestShadowCaster:
         square = [3, 3]
         sector = [5.0 / 7.0, 0]
         assert sut.squareInSector(square, sector) == False
+
+    def test_it_should_include_if_center_is_between_lines(self):
+        sut = ShadowCaster()
+        square = [5, 3]
+        sector = [5.0 / 7.0, 5.0 / 9.0]
+        assert sut.squareInSector(square, sector) == True
+
+    def test_it_should_include_if_top_left_between_lines(self):
+        sut = ShadowCaster()
+        square = [4, 2]
+        sector = [5.0 / 7.0, 5.0 / 9.0]
+        assert sut.squareInSector(square, sector) == True
+

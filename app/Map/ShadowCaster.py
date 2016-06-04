@@ -21,6 +21,7 @@ class ShadowCaster:
 
         center_slope = y / x
         se_slope = (y - 0.5) / (x + 0.5)
+        nw_slope = (y + 0.5) / (x - 0.5)
 
         top_slope = sector[0]
         bottom_slope = sector[1]
@@ -30,7 +31,10 @@ class ShadowCaster:
         if center_slope <= top_slope and center_slope >= bottom_slope:
             return True
 
-        if se_slope < top_slope and se_slope > bottom_slope:
+        if se_slope < top_slope and se_slope >= bottom_slope:
+            return True
+
+        if nw_slope <= top_slope and nw_slope > bottom_slope:
             return True
 
         return False
