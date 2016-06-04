@@ -1,6 +1,22 @@
 from app.Map import ShadowCaster
 
 class TestShadowCaster:
+    def test_it_should_redraw_an_empty_map(self):
+        octet = [
+            '   .',
+            '  ..',
+            ' ...',
+            '@...',
+        ]
+        result = [
+            '   .',
+            '  ..',
+            ' ...',
+            '@...',
+        ]
+        sut = ShadowCaster()
+        assert sut.getShadowMap(octet) == result
+
     def test_it_should_draw_a_super_small_shadow(self):
         octet = [
             '   .',
