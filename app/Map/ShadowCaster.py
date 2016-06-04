@@ -38,3 +38,6 @@ class ShadowCaster:
             return True
 
         return False
+
+    def getSectors(self, column, start_sectors):
+        return [5.0 / 7.0, 1.0 / 3.0]

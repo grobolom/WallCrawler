@@ -31,3 +31,9 @@ class TestShadowCaster:
         sector = [5.0 / 7.0, 5.0 / 9.0]
         assert sut.squareInSector(square, sector) == True
 
+    def test_it_should_return_the_next_set_of_sectors(self):
+        sut = ShadowCaster()
+        column = ['#','.','.','#']
+        start_sectors = ( [1.0, 0.0] )
+        result = sut.getSectors(column, start_sectors)
+        assert result == ( [2.5 / 3.5, 0.5 / 1.5] )
