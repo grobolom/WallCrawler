@@ -45,6 +45,13 @@ class TestShadowCaster:
         result = sut.getSectors(column, start_sectors)
         assert result == ( [1.0, 0.5 / 2.5], )
 
+    def test_it_should_adjust_both_ends_of_the_sector(self):
+        sut = ShadowCaster()
+        column = ['#','.','.','#']
+        start_sectors = ( [1.0, 0.0], )
+        result = sut.getSectors(column, start_sectors)
+        assert result == ( [2.5 / 3.5, 0.5 / 2.5], )
+
     def test_it_should_split_a_sector_with_a_blocker(self):
         sut = ShadowCaster()
         column = ['.','.','.','#','.','.']
