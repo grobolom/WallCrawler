@@ -16,4 +16,21 @@ class ShadowCaster:
         return [ ''.join(row) for row in result ]
 
     def squareInSector(self, square, sector):
-        return True
+        x = float(square[0])
+        y = float(square[1])
+
+        center_slope = y / x
+        se_slope = (y - 0.5) / (x + 0.5)
+
+        top_slope = sector[0]
+        bottom_slope = sector[1]
+
+        print(center_slope, top_slope, bottom_slope)
+
+        if center_slope <= top_slope and center_slope >= bottom_slope:
+            return True
+
+        if se_slope < top_slope and se_slope > bottom_slope:
+            return True
+
+        return False
