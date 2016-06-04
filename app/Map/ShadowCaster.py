@@ -7,23 +7,13 @@ class ShadowCaster:
             ' ' for col in range(width) ]
                 for row in range(height) ]
 
+        empty = True
         for x in range(width):
-            for y in range(height):
-                if octet[y][x] == ' ':
-                    result[y][x] = ' '
-                    continue
-                result[y][x] = 'x'
+            for y in range(height - 1, -1, -1):
+                result[y][x] = self.handleSquare(y, x, octet)
+                return '#'
 
-        print( [ ''.join(row) for row in result ] )
         return [ ''.join(row) for row in result ]
 
-    def handleSquare(self, y, x, octet):
-        print(y, x)
-        square = octet[y][x]
-        if square == ' ':
-            return ' '
-        if square == '.':
-            return '.'
-        if square == '@':
-            return '@'
-        return '#'
+    def squareInSector(self, square, sector):
+        return True
