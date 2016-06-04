@@ -33,7 +33,26 @@ class TestShadowCaster:
 
     def test_it_should_return_the_next_set_of_sectors(self):
         sut = ShadowCaster()
-        column = ['#','.','.','#']
-        start_sectors = ( [1.0, 0.0] )
+        column = ['#','.','.','.']
+        start_sectors = ( [1.0, 0.0], )
         result = sut.getSectors(column, start_sectors)
-        assert result == ( [2.5 / 3.5, 0.5 / 1.5] )
+        assert result == ( [2.5 / 3.5, 0.0], )
+
+    def test_it_should_adjust_only_needed_sectors(self):
+        sut = ShadowCaster()
+        column = ['.','.','.','#']
+        start_sectors = ( [1.0, 0.0], )
+        result = sut.getSectors(column, start_sectors)
+        assert result == ( [1.0, 0.5 / 2.5], )
+
+    def test_it_should_split_a_sector_with_a_blocker(self):
+        sut = ShadowCaster()
+        column = ['.','.','.','#','.','.']
+        start_sectors = ( [5.0 / 7.0, 1.0 / 7.0 ] )
+        # result = sut.getSectors(column, start_sectors)
+        """
+        assert result == (
+            [ 5.0 / 7.0, 5.0 / 9.0 ],
+            [ 3.0 / 11.0, 1.0 / 7.0 ],
+        )
+        """

@@ -26,8 +26,6 @@ class ShadowCaster:
         top_slope = sector[0]
         bottom_slope = sector[1]
 
-        print(center_slope, top_slope, bottom_slope)
-
         if center_slope <= top_slope and center_slope >= bottom_slope:
             return True
 
@@ -40,4 +38,30 @@ class ShadowCaster:
         return False
 
     def getSectors(self, column, start_sectors):
-        return [5.0 / 7.0, 1.0 / 3.0]
+        height = len(column) - 1
+
+        last_square = '.'
+        if column[0] == '#':
+            last_square = '#'
+
+        top_slope = start_sectors[0][0]
+        bottom_slope = start_sectors[0][1]
+
+        for k, current in enumerate(column):
+            y = height - k
+            square = [height, y]
+            if not self.squareInSector(square, start_sectors[0]):
+                continue
+
+            print(height, y, last_square, current)
+
+            if last_square != current and current == '.':
+                top_slope = (float(y) + 0.5) / (float(height) + 0.5)
+
+            if last_square != current and current == '#':
+                bottom_slope = (float(y) + 0.5) / (float(height) - 0.5)
+
+            last_square = current
+
+
+        return ( [top_slope, bottom_slope ], )
