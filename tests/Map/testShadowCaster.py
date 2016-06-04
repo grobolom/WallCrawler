@@ -62,3 +62,13 @@ class TestShadowCaster:
             [ 1.0, 1.5 / 2.5 ],
             [ 0.5 / 3.5, 0.0 ],
         ]
+    def test_it_should_split_adjusted_sectors_correctly(self):
+        sut = ShadowCaster()
+        column = ['.','.','.','#','.','.']
+        start_sectors = ( [5.0 / 7.0, 1.0 / 7.0], )
+        result = sut.getSectors(column, start_sectors)
+
+        assert result == [
+            [ 5.0 / 7.0 , 5.0 / 9.0 ],
+            [ 1.5 / 5.5 , 1.0 / 7.0 ],
+        ]
