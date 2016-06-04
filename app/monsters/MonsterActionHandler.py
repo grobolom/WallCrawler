@@ -1,0 +1,2 @@
+class MonsterActionHandler:
+    pass
