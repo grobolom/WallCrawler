@@ -43,9 +43,15 @@ def main():
     }
 
     reducers = [
+        # handle character actions first
         app.reducers.AttackReducer(),
         app.reducers.CharacterMover(),
         app.reducers.CharacterShovel(),
+
+        # monster and environment actions here
+        app.reducers.MonsterMover(),
+
+        # cleanup phase
         app.reducers.XpAssigner(),
         app.reducers.DeadMonsterCleaner(),
         app.reducers.GameOver(),
