@@ -28,7 +28,7 @@ class TestShadowCaster:
             '   .',
             '  ..',
             ' ...',
-            '@.#.',
+            '@.#s',
         ]
         sut = ShadowCaster()
         assert sut.getShadowMap(octet) == result
