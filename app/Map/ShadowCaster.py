@@ -16,3 +16,14 @@ class ShadowCaster:
 
         print( [ ''.join(row) for row in result ] )
         return [ ''.join(row) for row in result ]
+
+    def handleSquare(self, y, x, octet):
+        print(y, x)
+        square = octet[y][x]
+        if square == ' ':
+            return ' '
+        if square == '.':
+            return '.'
+        if square == '@':
+            return '@'
+        return '#'
