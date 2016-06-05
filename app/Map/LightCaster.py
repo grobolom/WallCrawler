@@ -1,22 +1,37 @@
 class LightCaster:
     def getMask(self, squares):
 
+        for k, x in enumerate(squares):
+            print(x)
+
         result = []
         last_sectors = [[ 1.0, 0.0 ]]
-        for row in reversed(squares):
+        for k, row in enumerate(reversed(squares)):
             squares = [ s for s in list(row) if s != ' ' ]
-
             res = self.getShadowedSquares(squares, last_sectors)
-            result += [''.join(res)]
+
+            line = ''
+            for k, s in enumerate(res):
+                if s == 's':
+                    line += 's'
+                else:
+                    line += squares[k]
+
+            result += [ line ]
             last_sectors = self.getNewSectors(squares, last_sectors)
+
+            if k > 11:
+                print(squares)
+                print(res)
+                print(last_sectors)
 
         max_y = len(result)
         result.reverse()
 
         results = [ row.rjust(max_y, ' ') for row in result ]
 
-        for x in results:
-            print(x)
+        for k, x in enumerate(results):
+            print(x + str(max_y - k - 1))
 
         return results
 

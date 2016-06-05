@@ -69,7 +69,7 @@ class TestShadowCaster:
 
         assert result == [ [1.0, 2.5 / 3.5], [ 0.5 / 4.5, 0.0] ]
 
-    def xtest_it_should_get_all_stuff_right(self):
+    def test_it_should_get_all_stuff_right(self):
         sut = LightCaster()
         squares = [
             '.................',
