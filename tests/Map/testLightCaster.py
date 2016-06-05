@@ -50,7 +50,7 @@ class TestShadowCaster:
             '             ....',
             '              ...',
             '               ..',
-            '                @',
+            '                .',
         ]
         result = sut.getMask(squares)
         assert result == [
@@ -70,5 +70,5 @@ class TestShadowCaster:
             '             ....',
             '              ...',
             '               ..',
-            '                @',
+            '                .',
         ]

@@ -1,5 +1,17 @@
 class LightCaster:
     def getMask(self, squares):
+
+        result = []
+        last_sectors = [[ 1.0, 0.0 ]]
+        for row in reversed(squares):
+            squares = [ s for s in list(row) if s != ' ' ]
+
+            res = self.getShadowedSquares(squares, last_sectors)
+            result += ''.join(res)
+            last_sectors = self.getNewSectors(squares, last_sectors)
+
+            print(res, last_sectors)
+
         return []
 
     def getNewSectors(self, squares, sectors):
