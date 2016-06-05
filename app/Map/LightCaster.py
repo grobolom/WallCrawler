@@ -7,12 +7,18 @@ class LightCaster:
             squares = [ s for s in list(row) if s != ' ' ]
 
             res = self.getShadowedSquares(squares, last_sectors)
-            result += ''.join(res)
+            result += [''.join(res)]
             last_sectors = self.getNewSectors(squares, last_sectors)
 
-            print(res, last_sectors)
+        max_y = len(result)
+        result.reverse()
 
-        return []
+        results = [ row.rjust(max_y, ' ') for row in result ]
+
+        for x in results:
+            print(x)
+
+        return results
 
     def getNewSectors(self, squares, sectors):
         max_y = len(squares) - 1
@@ -23,7 +29,7 @@ class LightCaster:
         last_square = squares[0]
 
         result = []
-        done = True
+        done = False
 
         for i, square in enumerate(squares):
             y = max_y - i
@@ -56,6 +62,9 @@ class LightCaster:
         sector_index = 0
         sector = sectors[sector_index]
 
+        if squares == ['.']:
+            return ['.']
+
         for i, square in enumerate(squares):
             y = max_y - i
             pos = [max_y, y]
@@ -73,6 +82,7 @@ class LightCaster:
                 result += ['.']
             else:
                 result += ['s']
+
 
         return result
 
