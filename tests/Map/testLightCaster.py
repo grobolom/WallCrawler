@@ -51,7 +51,7 @@ class TestShadowCaster:
 
         assert result == [ [1.0, 1.5 / 2.5], [0.5 / 3.5, 0.0] ]
 
-    def test_it_should_return_new_sectors_from_old_ones(self):
+    def test_it_should_return_new_sectors_from_empty_ones(self):
         sut = LightCaster()
         squares = [ '.', '.', '.', '.']
         sectors = [ [ 1.0, 0.0 ] ]
@@ -60,7 +60,16 @@ class TestShadowCaster:
 
         assert result == [ [1.0, 0.0] ]
 
-    def test_it_should_get_all_stuff_right(self):
+    def test_it_should_return_new_sectors_from_empty_ones(self):
+        sut = LightCaster()
+        squares = [ '.', '.', '#', '#',  '.']
+        sectors = [ [ 1.0, 0.0 ] ]
+
+        result = sut.getNewSectors(squares, sectors)
+
+        assert result == [ [1.0, 2.5 / 3.5], [ 0.5 / 4.5, 0.0] ]
+
+    def xtest_it_should_get_all_stuff_right(self):
         sut = LightCaster()
         squares = [
             '.................',
