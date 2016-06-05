@@ -8,6 +8,7 @@ class LightCaster:
         last_square = squares[0]
 
         result = []
+        done = True
 
         for i, square in enumerate(squares):
             y = max_y - i
@@ -17,15 +18,19 @@ class LightCaster:
                 result += [ sector ]
                 sector_index += 1
 
-            if square == '.' and last_square == '#':
-                result += [ sector[0], (y + 0.5) / (max_y + 0.5) ]
-                sector = [ (y + 0.5) / (max_y + 0.5), sector[1] ]
+            if square == '#' and last_square == '.':
+                result += [ [ sector[0], (y + 0.5) / (max_y - 0.5) ] ]
+                sector = [ (y + 0.5) / (max_y - 0.5), sector[1] ]
                 sector_index += 1
 
-            if sector_index > len(sectors) - 1:
-                break
+            if square == '.' and last_square == '#':
+                sector[0] = (y + 0.5) / (max_y + 0.5)
+                done = False
 
             last_square = square
+
+        if not done:
+            result += [ sector ]
 
         return result
 
@@ -57,7 +62,6 @@ class LightCaster:
         return result
 
     def squarePastSector(self, square, sector):
-        print(square, sector)
         x = float(square[0])
         y = float(square[1])
 
