@@ -44,23 +44,35 @@ class LightCaster:
         last_square = squares[0]
 
         result = []
-        done = False
+        done = True
 
         for i, square in enumerate(squares):
             y = max_y - i
+            x = max_y
             pos = [max_y, y]
 
-            if self.squarePastSector(pos, sector):
-                result += [ sector ]
-                sector_index += 1
+            if self.squareBeforeSector(pos, sector):
+                continue
 
-            if square == '#' and last_square == '.':
-                result += [ [ sector[0], (y + 0.5) / (max_y - 0.5) ] ]
-                sector = [ (y + 0.5) / (max_y - 0.5), sector[1] ]
-                sector_index += 1
+            if self.squareInSector(pos, sector) and \
+               square == '#' and last_square == '.':
 
-            if square == '.' and last_square == '#':
-                sector[0] = (y + 0.5) / (max_y + 0.5)
+                new_slope = (y + 0.5) / (x - 0.5)
+                new_sector = [ sector[0], new_slope ]
+                result += [ new_sector ]
+                done = True
+
+                sector = [ new_slope, sector[1] ]
+                if sector[0] < sector[1]:
+                    sector_index += 1
+                    sector = sectors[sector_index]
+
+            if self.squareInSector(pos, sector) and \
+               square == '.' and last_square == '#':
+
+                new_slope = (y + 0.5) / (x + 0.5)
+                sector = [ new_slope, sector[1] ]
+
                 done = False
 
             last_square = square
@@ -100,6 +112,16 @@ class LightCaster:
 
 
         return result
+
+    def squareBeforeSector(self, square, sector):
+        x = float(square[0])
+        y = float(square[1])
+
+        se_slope = (y + 0.5) / (x - 0.5)
+
+        top_slope = sector[0]
+
+        return se_slope > top_slope
 
     def squarePastSector(self, square, sector):
         x = float(square[0])
