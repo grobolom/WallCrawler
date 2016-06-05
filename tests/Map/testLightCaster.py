@@ -64,6 +64,17 @@ class TestShadowCaster:
 
         assert result == ['.', '.', 's', '.']
 
+    def test_it_should_not_miss_shadow_squares_by_one(self):
+        sut = LightCaster()
+        squares  = list('..............')
+        expected = list('...ss.........')
+        sectors = [ [ 1.0, 9.5 / 11.5 ], [0.6, 0.0] ]
+        result = sut.getShadowedSquares(squares, sectors)
+
+        print(''.join(result), ''.join(expected))
+
+        assert result == expected
+
     def test_it_should_return_new_sectors_from_old_ones(self):
         sut = LightCaster()
         squares = [ '.', '.', '#', '.']
@@ -91,7 +102,7 @@ class TestShadowCaster:
 
         assert result == [ [1.0, 2.5 / 3.5], [ 0.5 / 4.5, 0.0] ]
 
-    def xtest_it_should_get_all_stuff_right(self):
+    def test_it_should_get_all_stuff_right(self):
         sut = LightCaster()
         squares = [
             '.................',

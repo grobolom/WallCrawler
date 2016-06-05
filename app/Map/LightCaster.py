@@ -9,6 +9,7 @@ class LightCaster:
         for k, row in enumerate(reversed(squares)):
             squares = [ s for s in list(row) if s != ' ' ]
             res = self.getShadowedSquares(squares, last_sectors)
+            print( ''.join(res).rjust(17, ' ') )
 
             line = ''
             for k, s in enumerate(res):
@@ -20,8 +21,8 @@ class LightCaster:
             result += [ line ]
             last_sectors = self.getNewSectors(squares, last_sectors)
 
-            if k > 11:
-                print(squares)
+            if k > 17:
+                print(''.join(squares))
                 print(res)
                 print(last_sectors)
 
@@ -57,6 +58,8 @@ class LightCaster:
             if self.squarePastSector(pos, sector):
                 result += [ sector ]
                 sector_index += 1
+                if not sector_index in sectors:
+                    break
                 sector = sectors[sector_index]
 
             if self.squareInSector(pos, sector) and \
@@ -85,6 +88,9 @@ class LightCaster:
         if not done:
             result += [ sector ]
 
+        if len(result) == 0:
+            result += [ sector ]
+
         return result
 
     def getShadowedSquares(self, squares, sectors):
@@ -101,8 +107,13 @@ class LightCaster:
             y = max_y - i
             pos = [max_y, y]
 
+            print('\nsomething')
             if self.squarePastSector(pos, sector):
                 sector_index += 1
+
+            print(self.squarePastSector(pos, sector),
+                  self.squareInSector(pos, sector),
+                  pos, sector)
 
             if sector_index > len(sectors) - 1:
                 result += ['s']
@@ -114,7 +125,6 @@ class LightCaster:
                 result += ['.']
             else:
                 result += ['s']
-
 
         return result
 
@@ -155,7 +165,9 @@ class LightCaster:
         if se_slope < top_slope and se_slope >= bottom_slope:
             return True
 
+        """
         if nw_slope <= top_slope and nw_slope > bottom_slope:
             return True
+        """
 
         return False
