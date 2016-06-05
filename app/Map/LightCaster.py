@@ -54,6 +54,11 @@ class LightCaster:
             if self.squareBeforeSector(pos, sector):
                 continue
 
+            if self.squarePastSector(pos, sector):
+                result += [ sector ]
+                sector_index += 1
+                sector = sectors[sector_index]
+
             if self.squareInSector(pos, sector) and \
                square == '#' and last_square == '.':
 
