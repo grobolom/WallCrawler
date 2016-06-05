@@ -21,3 +21,12 @@ class TestShadowCaster:
         result = sut.getShadowedSquares(squares, sectors)
 
         assert result == ['.', '.', 's', '.']
+
+    def test_it_should_return_new_sectors_from_old_ones(self):
+        sut = LightCaster()
+        squares = [ '.', '.', '#', '.']
+        sectors = [ [ 1.0, 0.0 ] ]
+
+        result = sut.getNewSectors(squares, sectors)
+
+        assert result == [ [1.0, 1.5 / 2.5], [0.5 / 3.5, 0.0] ]

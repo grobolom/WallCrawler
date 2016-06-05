@@ -1,4 +1,34 @@
 class LightCaster:
+    def getNewSectors(self, squares, sectors):
+        max_y = len(squares) - 1
+        result = []
+
+        sector_index = 0
+        sector = sectors[sector_index]
+        last_square = squares[0]
+
+        result = []
+
+        for i, square in enumerate(squares):
+            y = max_y - i
+            pos = [max_y, y]
+
+            if self.squarePastSector(pos, sector):
+                result += [ sector ]
+                sector_index += 1
+
+            if square == '.' and last_square == '#':
+                result += [ sector[0], (y + 0.5) / (max_y + 0.5) ]
+                sector = [ (y + 0.5) / (max_y + 0.5), sector[1] ]
+                sector_index += 1
+
+            if sector_index > len(sectors) - 1:
+                break
+
+            last_square = square
+
+        return result
+
     def getShadowedSquares(self, squares, sectors):
         max_y = len(squares) - 1
         result = []
@@ -27,14 +57,13 @@ class LightCaster:
         return result
 
     def squarePastSector(self, square, sector):
+        print(square, sector)
         x = float(square[0])
         y = float(square[1])
 
         nw_slope = (y + 0.5) / (x - 0.5)
 
         bottom_slope = sector[1]
-
-        print(square, sector, nw_slope, bottom_slope)
 
         return nw_slope < bottom_slope
 
