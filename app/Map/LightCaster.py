@@ -1,4 +1,7 @@
 class LightCaster:
+    def getMask(self, squares):
+        return []
+
     def getNewSectors(self, squares, sectors):
         max_y = len(squares) - 1
         result = []
