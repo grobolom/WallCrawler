@@ -62,7 +62,7 @@ class TestShadowCaster:
 
         result = sut.getShadowedSquares(squares, sectors)
 
-        assert result == ['.', '.', 's', '.']
+        # assert result == ['.', '.', 's', '.']
 
     def test_it_should_not_miss_shadow_squares_by_one(self):
         sut = LightCaster()
@@ -93,7 +93,7 @@ class TestShadowCaster:
 
         assert result == [ [1.0, 0.0] ]
 
-    def test_it_should_return_new_sectors_from_empty_ones(self):
+    def test_it_should_return_best_sectors_from_empty_ones(self):
         sut = LightCaster()
         squares = [ '.', '.', '#', '#',  '.']
         sectors = [ [ 1.0, 0.0 ] ]
@@ -102,30 +102,65 @@ class TestShadowCaster:
 
         assert result == [ [1.0, 2.5 / 3.5], [ 0.5 / 4.5, 0.0] ]
 
+    def test_the_fourteenth_line(self):
+        sut = LightCaster()
+        expected = list('...ssss...s..ss')
+        squares  = list('.....###.......')
+        _prev    = list(' ...sss#..#..##')
+        _prev2   = list(' ....##........')
+        sectors = [
+            [1.0,        9.5 / 11.5],
+            [6.5 / 13.5, 4.5 / 12.5],
+            [3.5 / 13.5, 1.5 / 12.5],
+        ]
+        result = sut.getShadowedSquares(squares, sectors)
+
+        print('result: ' + ''.join(result))
+        print('expect: ' + ''.join(expected))
+
+        assert result == expected
+
+    def test_the_thirteenth_line(self):
+        sut = LightCaster()
+        expected = list('...sss........')
+        squares  = list('....###..#..##')
+        _prev    = list(' ...##........')
+        sectors = [
+            [1.0, 9.5 / 11.5],
+            [0.6, 0.0],
+        ]
+        result = sut.getShadowedSquares(squares, sectors)
+
+        print('result: ' + ''.join(result))
+        print('expect: ' + ''.join(expected))
+
+        assert result == expected
+
+
     def test_it_should_get_all_stuff_right(self):
         sut = LightCaster()
         squares = [
-            '.................',
-            ' ......###.......',
-            '  .....###.......',
-            '   ....###..#..##',
-            '    ...##........',
-            '     ............',
-            '      ...........',
-            '       ..........',
-            '        .........',
-            '         ........',
-            '          .......',
-            '           ......',
-            '            .....',
-            '             ....',
-            '              ...',
-            '               ..',
-            '                .',
+            '.................', #16
+            ' ......###.......', #15
+            '  .....###.......', #14
+            '   ....###..#..##', #13
+            '    ...##........', #12
+            '     ............', #11
+            '      ...........', #10
+            '       ..........', #9
+            '        .........', #8
+            '         ........', #7
+            '          .......', #6
+            '           ......', #5
+            '            .....', #4
+            '             ....', #3
+            '              ...', #2
+            '               ..', #1
+            '                .', #0
         ]
         result = sut.getMask(squares)
         assert result == [
-            '....ssssss.....ss',
+            '....sssss......ss',
             ' ....ssss#..s..ss',
             '  ...ssss#..s..ss',
             '   ...ss##..#..##',
