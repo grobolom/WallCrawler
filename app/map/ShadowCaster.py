@@ -1,2 +1,3 @@
 class ShadowCaster:
-    pass
+    def castOctant(self, squares):
+        return squares
