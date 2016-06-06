@@ -84,7 +84,7 @@ class LightCaster:
             if self.squareInSector(pos, sector) and \
                square == '#' and last_square == '.':
 
-                new_slope = (y + 0.5) / (x - 0.5)
+                new_slope = (y + 0.5) / (x)
                 new_sector = [ sector[0], new_slope ]
                 result += [ new_sector ]
                 done = True
@@ -97,7 +97,7 @@ class LightCaster:
             if self.squareInSector(pos, sector) and \
                square == '.' and last_square == '#':
 
-                new_slope = (y + 0.5) / (x + 0.5)
+                new_slope = (y + 0.5) / (x)
                 sector = [ new_slope, sector[1] ]
 
                 done = False
