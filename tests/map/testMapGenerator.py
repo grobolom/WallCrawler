@@ -1,5 +1,5 @@
 import app
-from app.Map import MapGenerator
+from app.map import MapGenerator
 
 class TestMapGenerator:
     def test_it_should_determine_if_a_square_is_empty(self):

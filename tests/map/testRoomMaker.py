@@ -1,7 +1,7 @@
 import unittest
 
 import app
-from app.Map import RoomMaker
+from app.map import RoomMaker
 
 class TestRoomMaker(unittest.TestCase):
     def test_it_should_make_a_room(self):

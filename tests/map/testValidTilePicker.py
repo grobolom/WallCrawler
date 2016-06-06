@@ -1,5 +1,5 @@
 import app
-from app.Map import ValidTilePicker
+from app.map import ValidTilePicker
 
 class TestValidTilePicker:
     def test_it_should_pick_a_random_floor_tile(self):

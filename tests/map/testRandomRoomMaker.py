@@ -1,5 +1,5 @@
 import app
-from app.Map import RandomRoomMaker
+from app.map import RandomRoomMaker
 
 class TestRandomRoomMaker:
     def test_it_should_make_a_room_of_random_size(self):
