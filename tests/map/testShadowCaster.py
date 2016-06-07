@@ -14,15 +14,15 @@ class TestShadowCaster:
             list('.........'),
         ]
         expected = [
-            list('.ss#..sss'),
-            list('s.s..#sss'),
-            list('ss.#..sss'),
-            list('sss..#.#.'),
-            list('sss#@....'),
-            list('sss..#.#.'),
-            list('ss.#..sss'),
-            list('s.s..#sss'),
-            list('.ss#..sss'),
+            list('.  #..   '),
+            list(' . ..#   '),
+            list('  .#..   '),
+            list('   ..#.#.'),
+            list('   #@....'),
+            list('   ..#.#.'),
+            list('  .#..   '),
+            list(' . ..#   '),
+            list('.  #..   '),
         ]
         result = ShadowCaster().shade(squares, [4, 4])
 
