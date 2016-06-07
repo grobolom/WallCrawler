@@ -57,3 +57,30 @@ class TestShadowCaster:
             print(''.join(result[key]) + ' ' + ''.join(expected[key]))
 
         assert result == expected
+
+    def test_it_should_handle_non_square_areas(self):
+        squares = [
+            list('..........'),
+            list('..........'),
+            list('..........'),
+            list('...#......'),
+            list('.....#....'),
+            list('..........'),
+            list('@...#.....'),
+        ]
+        expected = [
+            list('......  ..'),
+            list('..... ....'),
+            list('.... .... '),
+            list('...#...  .'),
+            list('.....#....'),
+            list('..........'),
+            list('@...#     '),
+        ]
+        sut = ShadowCaster()
+        result = sut.shade(squares, [0, 6])
+
+        for key, row in enumerate(result):
+            print(''.join(result[key]) + ' ' + ''.join(expected[key]))
+
+        assert result == expected
