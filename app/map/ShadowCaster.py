@@ -2,11 +2,16 @@ import copy
 
 class ShadowCaster:
     def castOctant(self, squares):
+        results = self.getShadowMask(squares)
+
+        self.castLight(1, [1.0, 0.0], squares, results)
+
+        return results
+
+    def getShadowMask(self, squares):
         height = len(squares)
         results = [[ 's' for i in range(height) ] for j in range(height) ]
         results[height - 1][0] = '@'
-
-        self.castLight(1, [1.0, 0.0], squares, results)
 
         return results
 
