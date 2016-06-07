@@ -12,18 +12,18 @@ class TestShadowCaster:
             list('....#..'),
         ]
         expected = [
-            list('......s'),
-            list('.....s.'),
-            list('....s..'),
-            list('...#...'),
-            list('.....#.'),
             list('.......'),
-            list('....#ss'),
+            list('......!'),
+            list('.....!!'),
+            list('...!!!!'),
+            list('..!!!!!'),
+            list('.!!!!!!'),
+            list('!!!!!..'),
         ]
         sut = ShadowCaster()
         result = sut.castOctant(squares)
 
-        for row in result:
-            print ''.join(row)
+        for k, row in enumerate(result):
+            print ''.join(result[k]) + ' ' + ''.join(expected[k])
 
         assert result == expected
