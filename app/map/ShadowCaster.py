@@ -1,6 +1,9 @@
 import copy
 
 class ShadowCaster:
+    def shade(self, squares, center_point):
+        return squares
+
     def castOctant(self, squares, octant):
         results = self.getShadowMask(squares)
 

@@ -1,6 +1,36 @@
 from app.map import ShadowCaster
 
 class TestShadowCaster:
+    def test_it_should_color_from_any_square_correctly(self):
+        squares = [
+            list('.........'),
+            list('.........'),
+            list('.........'),
+            list('.........'),
+            list('....@....'),
+            list('.........'),
+            list('.........'),
+            list('.........'),
+            list('.........'),
+        ]
+        expected = [
+            list('.........'),
+            list('.........'),
+            list('.........'),
+            list('.........'),
+            list('....@....'),
+            list('.........'),
+            list('.........'),
+            list('.........'),
+            list('.........'),
+        ]
+        result = ShadowCaster().shade(squares, [4, 4])
+
+        for key, row in enumerate(result):
+            print(''.join(result[key]) + ' ' + ''.join(expected[key]))
+
+        assert result == expected
+
     def test_it_should_color_an_octant(self):
         squares = [
             list('.......'),
@@ -47,4 +77,7 @@ class TestShadowCaster:
         sut = ShadowCaster()
         result = sut.castOctant(squares, 3)
 
-        assert result == expected
+        for key, row in enumerate(result):
+            print(''.join(result[key]) + ' ' + ''.join(expected[key]))
+
+        # assert result == expected
