@@ -8,7 +8,7 @@ class Rat(Monster):
         square = self.findANearbySquare(map)
         return {
             'name': 'MOVE',
-            'target': self,
+            'target': self.id,
             'to': square,
         }
 

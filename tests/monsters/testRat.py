@@ -3,7 +3,7 @@ from app.monsters import Rat
 
 class TestRat:
     def test_it_should_move_around(self):
-        sut = Rat(position = [0, 0])
+        sut = Rat(position = [0, 0], id = 3)
         state = {
             'map': {
                 'tiles': [[ app.Floor(), app.Floor() ]],
@@ -14,7 +14,7 @@ class TestRat:
         action = sut.getAction(state)
         expected = {
             'name': 'MOVE',
-            'target': sut,
+            'target': sut.id,
             'to': [1, 0],
         }
 
