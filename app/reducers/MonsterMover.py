@@ -8,6 +8,9 @@ class MonsterMover:
         id = action['target']
         to = action['to']
 
+        if not self.toSquareIsFree(to, new_state):
+            return new_state
+
         new_objects = state['objects']
         for key, o in enumerate(new_objects):
             if o.id == id:
@@ -16,3 +19,12 @@ class MonsterMover:
         state['objects'] = new_objects
 
         return new_state
+
+    def toSquareIsFree(self, square, state):
+        objects = state['objects']
+
+        for o in objects:
+            if o.position == square:
+                return False
+
+        return True
