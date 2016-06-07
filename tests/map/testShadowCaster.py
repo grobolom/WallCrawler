@@ -3,26 +3,26 @@ from app.map import ShadowCaster
 class TestShadowCaster:
     def test_it_should_color_from_any_square_correctly(self):
         squares = [
+            list('...#.#...'),
             list('.........'),
+            list('...#.#...'),
             list('.........'),
+            list('...#@#...'),
             list('.........'),
+            list('...#.#...'),
             list('.........'),
-            list('....@....'),
-            list('.........'),
-            list('.........'),
-            list('.........'),
-            list('.........'),
+            list('...#.#...'),
         ]
         expected = [
-            list('.  #..   '),
-            list(' . ..#   '),
-            list('  .#..   '),
-            list('   ..#.#.'),
-            list('   #@....'),
-            list('   ..#.#.'),
-            list('  .#..   '),
-            list(' . ..#   '),
-            list('.  #..   '),
+            list('.  #.#  .'),
+            list(' . ... . '),
+            list('  .#.#.  '),
+            list('   ...   '),
+            list('   #@#   '),
+            list('   ...   '),
+            list('  .#.#.  '),
+            list(' . ... . '),
+            list('.  #.#  .'),
         ]
         result = ShadowCaster().shade(squares, [4, 4])
 
