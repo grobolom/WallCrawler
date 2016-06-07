@@ -1,9 +1,11 @@
 import copy
 
 class ShadowCaster:
-    def castOctant(self, squares, octant_index):
+    def castOctant(self, squares, octant):
         results = self.getShadowMask(squares)
-        self.castLight(1, [1.0, 0.0], squares, results)
+
+        self.castLight(1, [1.0, 0.0], squares, results, octant)
+
         return results
 
     def getShadowMask(self, squares):
@@ -13,7 +15,7 @@ class ShadowCaster:
 
         return results
 
-    def castLight(self, x, sector, squares, results):
+    def castLight(self, x, sector, squares, results, octant):
         height = x
         max_y = len(squares) - 1
 
@@ -53,7 +55,8 @@ class ShadowCaster:
 
             # this square is past the light cone, so we're done
             if bottom_slope > nw_slope and child_scan:
-                self.castLight(x + 1, [ new_top_slope, nw_slope ], squares, results)
+                new_sector = [ new_top_slope, nw_slope ]
+                self.castLight(x + 1, new_sector, squares, results, octant)
                 break
 
             if bottom_slope > nw_slope:
@@ -72,10 +75,12 @@ class ShadowCaster:
                 child_scan = True
 
             if last_square == '.' and square == '#':
-                self.castLight(x + 1, [ new_top_slope, nw_slope ], squares, results)
+                new_sector = [ new_top_slope, nw_slope ]
+                self.castLight(x + 1, new_sector, squares, results, octant)
 
             if y == 0 and square == '.':
-                self.castLight(x + 1, [ new_top_slope, bottom_slope ], squares, results)
+                new_sector = [ new_top_slope, bottom_slope ]
+                self.castLight(x + 1, new_sector, squares, results, octant)
 
             last_square = square
 
