@@ -3,7 +3,8 @@ from app import Monster
 import random
 
 class Rat(Monster):
-    def getAction(self, map):
+    def getAction(self, state):
+        map = state['map']
         square = self.findANearbySquare(map)
         return {
             'name': 'MOVE',
