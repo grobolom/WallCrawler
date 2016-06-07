@@ -1,13 +1,14 @@
 import app
-import app.Map
+import app.map
 import app.reducers
-import app.keyboard
 import app.utils
+import app.keyboard
+import app.monsters
 import blessed
 
 def main():
 
-    s = app.Map.MapGenerator()
+    s = app.map.MapGenerator()
     map = s.getMap(30, 1, 10, [80, 20])
     s_map = map
 
@@ -20,7 +21,7 @@ def main():
     k = app.keyboard.MapKeyHandler()
     mah = app.keyboard.MoveAndAttackHandler()
 
-    vtp = app.Map.ValidTilePicker()
+    vtp = app.map.ValidTilePicker()
 
     positions = s.draw(map_size, screen_size, position)
 
@@ -33,7 +34,7 @@ def main():
         x = tile['pos'][0]
         y = tile['pos'][1]
         id += 1
-        o = app.Monster(position=tile['pos'],x=x,y=y,id=id,hp=2)
+        o = app.monsters.Rat(position=tile['pos'],x=x,y=y,id=id,hp=2)
         objects.append(o)
 
     state = {
@@ -61,6 +62,7 @@ def main():
 
     st = app.utils.Store(reducers, state)
     term = blessed.Terminal()
+    moah = app.monsters.MonsterActionHandler()
 
     print(term.clear)
     while True:
@@ -73,6 +75,11 @@ def main():
         action    = mah.getAction(key, state)
 
         st.dispatch(action)
+
+        monster_actions = moah.getMonsterActions(state)
+        for a in monster_actions:
+            st.dispatch(a)
+
         new_state = st.getState()
 
         c = new_state['character']
