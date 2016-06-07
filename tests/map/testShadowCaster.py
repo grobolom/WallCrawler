@@ -12,13 +12,13 @@ class TestShadowCaster:
             list('@...#..'),
         ]
         expected = [
-            list('.......'),
-            list('......!'),
-            list('.....!!'),
-            list('...!!!!'),
-            list('..!!!!!'),
-            list('.!!!!!!'),
-            list('@!!!!..'),
+            list('sssssss'),
+            list('ssssss.'),
+            list('sssss..'),
+            list('sss#...'),
+            list('ss...#.'),
+            list('s......'),
+            list('@...#ss'),
         ]
         sut = ShadowCaster()
         result = sut.castOctant(squares)

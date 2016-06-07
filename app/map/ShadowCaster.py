@@ -1,13 +1,16 @@
+import copy
+
 class ShadowCaster:
     def castOctant(self, squares):
-        # since we're working with a square area cols = rows
         height = len(squares)
+        results = [[ 's' for i in range(height) ] for j in range(height) ]
+        results[height - 1][0] = '@'
 
-        self.castLight(1, [1.0, 0.0], squares)
+        self.castLight(1, [1.0, 0.0], squares, results)
 
-        return squares
+        return results
 
-    def castLight(self, x, sector, squares):
+    def castLight(self, x, sector, squares, results):
         height = x
         max_y = len(squares) - 1
 
@@ -47,7 +50,7 @@ class ShadowCaster:
 
             # this square is past the light cone, so we're done
             if bottom_slope > nw_slope and child_scan:
-                self.castLight(x + 1, [ new_top_slope, nw_slope ], squares)
+                self.castLight(x + 1, [ new_top_slope, nw_slope ], squares, results)
                 break
 
             if bottom_slope > nw_slope:
@@ -59,17 +62,17 @@ class ShadowCaster:
 
             # light up the square - for now we mark it, later we'll figure out
             # how to switch it
-            squares[fixed_y][x] = '!'
+            results[fixed_y][x] = squares[fixed_y][x]
 
             if last_square == '#' and square == '.':
                 new_top_slope = ne_slope
                 child_scan = True
 
             if last_square == '.' and square == '#':
-                self.castLight(x + 1, [ new_top_slope, nw_slope ], squares)
+                self.castLight(x + 1, [ new_top_slope, nw_slope ], squares, results)
 
             if y == 0 and square == '.':
-                self.castLight(x + 1, [ new_top_slope, bottom_slope ], squares)
+                self.castLight(x + 1, [ new_top_slope, bottom_slope ], squares, results)
 
             last_square = square
 
