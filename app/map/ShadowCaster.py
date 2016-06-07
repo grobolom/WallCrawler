@@ -11,6 +11,7 @@ class ShadowCaster:
         height = x
         max_y = len(squares) - 1
 
+        # obviously don't run off the end of any arrays
         if x > max_y:
             return
 
@@ -22,6 +23,11 @@ class ShadowCaster:
         # about them screwing up on the first square
         last_square = squares[x][x]
         new_top_slope = top_slope
+
+        # we need this to mark if we have a second scan - this way we can fire
+        # off when we reach past the visible range of the scan, even though
+        # that scan won't go any further
+        child_scan = False
 
         for y in range(height, 0 - 1, -1):
             # for now we are working with a square for convenience so we have
@@ -39,9 +45,11 @@ class ShadowCaster:
             # we need this when changing from a blocked square to an unblocked
             ne_slope = (y + 0.5) / (x + 0.5)
 
-            print(square, x, y, nw_slope, se_slope)
-
             # this square is past the light cone, so we're done
+            if bottom_slope > nw_slope and child_scan:
+                self.castLight(x + 1, [ new_top_slope, nw_slope ], squares)
+                break
+
             if bottom_slope > nw_slope:
                 break
 
@@ -55,18 +63,14 @@ class ShadowCaster:
 
             if last_square == '#' and square == '.':
                 new_top_slope = ne_slope
-                print('blocking to non-blocking', new_top_slope)
+                child_scan = True
 
             if last_square == '.' and square == '#':
-                print('non-blocking to blocking (nw)',
-                      new_top_slope,
-                      nw_slope,
-                      top_slope,
-                      bottom_slope)
                 self.castLight(x + 1, [ new_top_slope, nw_slope ], squares)
 
             if y == 0 and square == '.':
-                print('casting the remaining one', new_top_slope, bottom_slope)
                 self.castLight(x + 1, [ new_top_slope, bottom_slope ], squares)
 
             last_square = square
+
+        return squares
