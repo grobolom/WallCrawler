@@ -1,22 +1,30 @@
 import copy
 
 class ShadowCaster:
-    def shade(self, squares, center):
-        # we'll be applying these octant transforms to the 'real' grid
-        # coordinates. We have a 'xx xy' and 'yx yy' - for example, we need
-        # to flip the bottom-right coordinates to the first octant, so
-        # [3, 2] needs to become [2, -3]
-        octant_transforms = [
-            [ 1,  0,  0,  1], # E NE
-            [ 1,  0,  0, -1], # E SE
-            [ 0,  1, -1,  0], # S SE
-            [ 0, -1, -1,  0], # S SW
-            [-1,  0,  0, -1], # W SW
-            [-1,  0,  0,  1], # W NW
-            [ 0, -1,  1,  0], # N NW
-            [ 0,  1,  1,  0], # N NE
-        ]
+    # we'll be applying these octant transforms to the 'real' grid
+    # coordinates. We have a 'xx xy' and 'yx yy' - for example, we need
+    # to flip the bottom-right coordinates to the first octant, so
+    # [3, 2] needs to become [2, -3]
+    OCTANT_TRANSFORMS = [
+        [ 1,  0,  0,  1], # E NE
+        [ 1,  0,  0, -1], # E SE
+        [ 0,  1, -1,  0], # S SE
+        [ 0, -1, -1,  0], # S SW
+        [-1,  0,  0, -1], # W SW
+        [-1,  0,  0,  1], # W NW
+        [ 0, -1,  1,  0], # N NW
+        [ 0,  1,  1,  0], # N NE
+    ]
 
+    def shade(self, squares, center):
+        results = self.getShadowMask(squares, center)
+
+        for o in self.OCTANT_TRANSFORMS:
+            self.castShadow(1, center, [1.0, 0.0], squares, results, o)
+
+        return results
+
+    def getShadowMask(self, squares, center):
         height = len(squares)
         width = len(squares[0])
 
@@ -25,10 +33,8 @@ class ShadowCaster:
         results = [[ ' ' for i in range(width) ] for j in range(height) ]
         results[center[1]][center[0]] = '@'
 
-        for o in octant_transforms:
-            self.castShadow(1, center, [1.0, 0.0], squares, results, o)
-
         return results
+
 
     def castShadow(self, col, center, sector, squares, results, octant):
         center_x = center[0]
