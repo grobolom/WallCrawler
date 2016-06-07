@@ -1,11 +1,9 @@
 import copy
 
 class ShadowCaster:
-    def castOctant(self, squares):
+    def castOctant(self, squares, octant_index):
         results = self.getShadowMask(squares)
-
         self.castLight(1, [1.0, 0.0], squares, results)
-
         return results
 
     def getShadowMask(self, squares):

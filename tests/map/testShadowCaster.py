@@ -21,7 +21,7 @@ class TestShadowCaster:
             list('@...#ss'),
         ]
         sut = ShadowCaster()
-        result = sut.castOctant(squares)
+        result = sut.castOctant(squares, 1)
 
         for k, row in enumerate(result):
             print ''.join(result[k]) + ' ' + ''.join(expected[k])
