@@ -22,4 +22,8 @@ class TestShadowCaster:
         ]
         sut = ShadowCaster()
         result = sut.castOctant(squares)
+
+        for row in result:
+            print ''.join(row)
+
         assert result == expected
