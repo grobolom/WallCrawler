@@ -44,7 +44,7 @@ class ShadowCaster:
                 real_y = center_y + x * octant[2] + y * octant[3]
 
                 if real_x < 0 or real_y < 0 or \
-                   real_y >= len(squares) or real_y >= len(squares):
+                   real_x >= len(squares) or real_y >= len(squares):
                     return
 
                 square = squares[real_y][real_x]
