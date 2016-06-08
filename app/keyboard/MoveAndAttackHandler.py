@@ -11,6 +11,10 @@ class MoveAndAttackHandler:
             square = self.getSquare(character, 0, -1)
         elif key == 'j':
             square = self.getSquare(character, 0, 1)
+        else:
+            return {
+                'name': 'NOTHING',
+            }
 
         monster = self.getMonster(square, objects)
         if monster is not None:

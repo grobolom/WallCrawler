@@ -71,9 +71,7 @@ def main():
         with term.cbreak():
             key = term.inkey()
 
-        action    = k.getAction(key, state)
         action    = mah.getAction(key, state)
-
         st.dispatch(action)
 
         monster_actions = moah.getMonsterActions(state)
