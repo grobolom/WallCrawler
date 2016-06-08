@@ -4,6 +4,10 @@ class Tile(object):
         self.blocks_los = False
         self.ascii_rep = ' '
 
+    def __eq__(self, other):
+        return not other == None and \
+               self.__dict__ == other.__dict__
+
 class Floor(Tile):
     def __init__(self):
         super(Floor, self).__init__()

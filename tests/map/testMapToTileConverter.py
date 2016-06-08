@@ -10,11 +10,11 @@ class TestMapToTileConverter:
         list('...#.'),
     ]
     expected = [
-        [ app.Floor(), app.Floor(), app.Wall(), app.Floor(), app.Floor() ],
-        [ app.Floor(), app.Wall(),  app.Wall(), app.Floor(), app.Floor() ],
-        [ app.Wall(),  app.Floor(), app.Wall(), app.Floor(), app.Floor() ],
-        [ app.Floor(), app.Floor(), app.Wall(), app.Floor(), app.Wall()  ],
-        [ app.Floor(), app.Floor(), app.Wall(), app.Wall(),  app.Floor() ],
+        [ app.Floor(), app.Floor(), app.Wall(),  app.Floor(), app.Floor() ],
+        [ app.Floor(), app.Wall(),  app.Floor(), app.Floor(), app.Floor() ],
+        [ app.Wall(),  app.Floor(), app.Floor(), app.Floor(), app.Floor() ],
+        [ app.Floor(), app.Floor(), app.Floor(), app.Floor(), app.Wall()  ],
+        [ app.Floor(), app.Floor(), app.Floor(), app.Wall(),  app.Floor() ],
     ]
     sut = MapToTileConverter()
     result = sut.convertToTiles(squares)
