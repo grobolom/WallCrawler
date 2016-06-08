@@ -31,3 +31,53 @@ class TestTileShadowCaster:
         result = MapToTileConverter().convertToSquares(res)
 
         assert result == expected
+
+    def test_it_should_color_an_octant(self):
+        squares = MapToTileConverter().convertToTiles([
+            list('.......'),
+            list('.......'),
+            list('.......'),
+            list('...#...'),
+            list('.....#.'),
+            list('.......'),
+            list('@...#..'),
+        ])
+        expected = [
+            list('...... '),
+            list('..... .'),
+            list('.... ..'),
+            list('...#...'),
+            list('.....#.'),
+            list('.......'),
+            list('@...#  '),
+        ]
+        sut = TileShadowCaster()
+        result = MapToTileConverter().convertToSquares(
+            sut.shade(squares, [0, 6]))
+
+        assert result == expected
+
+    def test_it_should_handle_non_square_areas(self):
+        squares = MapToTileConverter().convertToTiles([
+            list('..........'),
+            list('..........'),
+            list('..........'),
+            list('...#......'),
+            list('.....#....'),
+            list('..........'),
+            list('@...#.....'),
+        ])
+        expected = [
+            list('......  ..'),
+            list('..... ....'),
+            list('.... .... '),
+            list('...#...  .'),
+            list('.....#....'),
+            list('..........'),
+            list('@...#     '),
+        ]
+        sut = TileShadowCaster()
+        result = MapToTileConverter().convertToSquares(
+            sut.shade(squares, [0, 6]))
+
+        assert result == expected
