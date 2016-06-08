@@ -52,6 +52,7 @@ class ShadowCaster:
                 # 3 (x) * 0 + 2 (y) * 1 and the new y is 3 (x) * -1 + 2 (y) * 0.
                 real_x = center_x + x * octant[0] + y * octant[1]
                 real_y = center_y + x * octant[2] + y * octant[3]
+                position = [real_x, real_y]
 
                 if real_x < 0 or real_y < 0 or \
                    real_x >= len(squares[0]) or real_y >= len(squares):
@@ -81,7 +82,7 @@ class ShadowCaster:
                 if top_slope <= se_slope:
                     continue
 
-                results[real_y][real_x] = squares[real_y][real_x]
+                self.lightUpSquare(position, squares, results)
 
                 # blocked to non-blocked - we set the top slope of the existing
                 # sector to the se corner of the previous square, which is the
@@ -114,6 +115,11 @@ class ShadowCaster:
             #
             if last_square == '#':
                 break
+
+    def lightUpSquare(self, position, squares, results):
+        x = position[0]
+        y = position[1]
+        results[y][x] = squares[y][x]
 
     def notToBlocked(self, square, last_square):
         if last_square == '.' and square == '#':
