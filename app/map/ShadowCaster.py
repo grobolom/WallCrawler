@@ -88,7 +88,7 @@ class ShadowCaster:
                 # ne sector of the current one. Now when we keep going further
                 # down the x coordinates with this scan, we will shrink more
                 # and more as we hit more blocked squares
-                if last_square == '#' and square == '.':
+                if self.blockedToNot(square, last_square):
                     top_slope = ne_slope
 
                 # if we hit a blocking square from a non-blocking square, we 
@@ -114,3 +114,7 @@ class ShadowCaster:
             #
             if last_square == '#':
                 break
+    def blockedToNot(self, square, last_square):
+        if last_square == '#' and square == '.':
+            return True
+        return False
