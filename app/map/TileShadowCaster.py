@@ -23,7 +23,9 @@ class TileShadowCaster(ShadowCaster):
         results[y][x] = squares[y][x]
 
     def notToBlocked(self, square, last_square):
-        return square.blocking and not last_square.blocking
+        return last_square != None and \
+               (square.blocking and not last_square.blocking)
 
     def blockedToNot(self, square, last_square):
-        return not square.blocking and last_square.blocking
+        return last_square != None and \
+               (not square.blocking and last_square.blocking)
