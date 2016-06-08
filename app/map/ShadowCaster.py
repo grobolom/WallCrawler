@@ -44,7 +44,7 @@ class ShadowCaster:
         bottom_slope = sector[1]
 
         for x in range(col, len(squares[0])):
-            last_square = ''
+            last_square = None
             for y in range(x, -1, -1):
 
                 # this, in the loop. For example, [3, 2] in the first octant moved
