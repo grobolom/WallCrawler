@@ -119,14 +119,18 @@ class ShadowCaster:
     def lightUpSquare(self, position, squares, results):
         x = position[0]
         y = position[1]
-        results[y][x] = squares[y][x]
+
+        if type(results[y][x]) == str:
+            results[y][x] = squares[y][x]
 
     def notToBlocked(self, square, last_square):
-        if last_square == '.' and square == '#':
-            return True
-        return False
+        if type(square) == str:
+            if last_square == '.' and square == '#':
+                return True
+            return False
 
     def blockedToNot(self, square, last_square):
-        if last_square == '#' and square == '.':
-            return True
-        return False
+        if type(square) == str:
+            if last_square == '#' and square == '.':
+                return True
+            return False
