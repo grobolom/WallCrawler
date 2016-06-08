@@ -97,7 +97,7 @@ class ShadowCaster:
                 # when we reach a blocking square in the middle of a column - 
                 # the new scan takes over the top portion and the original scan
                 # continues down the bottom portion
-                if last_square == '.' and square == '#':
+                if self.notToBlocked(square, last_square):
                     new_sector = [ top_slope, nw_slope ]
                     self.castShadow(x + 1, center, new_sector, squares, results, octant)
 
@@ -114,6 +114,12 @@ class ShadowCaster:
             #
             if last_square == '#':
                 break
+
+    def notToBlocked(self, square, last_square):
+        if last_square == '.' and square == '#':
+            return True
+        return False
+
     def blockedToNot(self, square, last_square):
         if last_square == '#' and square == '.':
             return True
