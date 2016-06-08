@@ -113,8 +113,11 @@ class ShadowCaster:
             # ......... -> ........
             # @...#.... -> @...#
             #
-            if last_square == '#':
+            if self.isBlocked(last_square):
                 break
+
+    def isBlocked(self, square):
+        return square == '#'
 
     def lightUpSquare(self, position, squares, results):
         x = position[0]
