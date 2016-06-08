@@ -63,6 +63,7 @@ def main():
     st = app.utils.Store(reducers, state)
     term = blessed.Terminal()
     moah = app.monsters.MonsterActionHandler()
+    shadow_caster = app.map.TileShadowCaster()
 
     print(term.clear)
     while True:
@@ -86,8 +87,10 @@ def main():
         objects = new_state['objects']
 
         with term.location(0, 0):
-            for l in v.draw(new_state['map']['tiles'], positions, objects):
+            tiles = shadow_caster.shade(map['tiles'], pos)
+            for l in v.draw(tiles, positions, objects):
                 print(''.join(l))
+
             print(action)
             print('hp:' + str(new_state['character'].hp))
             print('xp:' + str(new_state['character'].xp))
