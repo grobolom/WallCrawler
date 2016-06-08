@@ -122,15 +122,8 @@ class ShadowCaster:
 
         results[y][x] = squares[y][x]
 
-        if type(results[y][x]) != str:
-            results[y][x].lit = true
-
     def notToBlocked(self, square, last_square):
-        if type(square) == str:
-            return (last_square == '.' and square == '#')
-        return (square.blocked and not last_square.blocked)
+        return (last_square == '.' and square == '#')
 
     def blockedToNot(self, square, last_square):
-        if type(square) == str:
-            return (last_square == '#' and square == '.')
-        return (not square.blocked and last_square.blocked)
+        return (last_square == '#' and square == '.')
