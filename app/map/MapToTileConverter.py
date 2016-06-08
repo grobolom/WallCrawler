@@ -1,2 +1,5 @@
+import app
+
 class MapToTileConverter:
-    pass
+    def convertToTiles(self, squares):
+        return squares
