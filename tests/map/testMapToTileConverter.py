@@ -22,3 +22,22 @@ class TestMapToTileConverter:
 
         assert result == expected
 
+    def test_it_should_convert_simple_tiles_back_to_squares(self):
+        tiles = [
+            [ app.Floor(), app.Floor(), app.Wall(),  app.Floor(), app.Floor() ],
+            [ app.Floor(), app.Wall(),  app.Floor(), app.Floor(), app.Floor() ],
+            [ app.Wall(),  app.Floor(), app.Floor(), app.Floor(), app.Floor() ],
+            [ app.Floor(), app.Floor(), app.Floor(), app.Floor(), app.Wall()  ],
+            [ app.Floor(), app.Floor(), app.Floor(), app.Wall(),  app.Floor() ],
+        ]
+        expected = [
+            list('..#..'),
+            list('.#...'),
+            list('#....'),
+            list('....#'),
+            list('...#.'),
+        ]
+        sut = MapToTileConverter()
+        result = sut.convertToSquares(tiles)
+
+        assert result == expected

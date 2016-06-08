@@ -12,3 +12,11 @@ class MapToTileConverter:
         if square == '#':
             return app.Wall()
         return app.Tile()
+
+    def convertToSquares(self, tiles):
+        return [[
+            self.getSquare(tile) for tile in row ]
+                                 for row in tiles ]
+
+    def getSquare(self, tile):
+        return tile.ascii_rep
