@@ -39,7 +39,7 @@ def main():
 
     state = {
         'map': s_map,
-        'character': app.Character(position=[41, 11]),
+        'character': app.Character(id = 0, position=[41, 11]),
         'objects': objects,
     }
 
