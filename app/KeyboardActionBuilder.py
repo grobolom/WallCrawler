@@ -24,3 +24,11 @@ class KeyboardActionBuilder:
                 'to': 'menu',
             }
         return { 'name': 'NO_MOVE' }
+
+    def getMenuAction(self, key):
+        if key == 'KEY_ESC':
+            return {
+                'name': 'SWITCH_VIEW',
+                'to': 'main',
+            }
+        return { 'name': 'NONE' }

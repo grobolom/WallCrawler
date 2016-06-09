@@ -33,5 +33,14 @@ class TestKeyboardActionBuilder:
         k = KeyboardActionBuilder()
         assert k.getAction(key) == {
             'name': 'SWITCH_VIEW',
-            'to': 'menu'
+            'to': 'menu',
+        }
+
+    def test_it_should_leave_the_menu_on_escape(self):
+        key = 'KEY_ESC'
+        view = 'menu'
+        k = KeyboardActionBuilder()
+        assert k.getAction(key, view) == {
+            'name': 'SWITCH_VIEW',
+            'to': 'main',
         }
