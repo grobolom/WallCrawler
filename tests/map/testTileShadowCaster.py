@@ -1,3 +1,4 @@
+import app
 from app.map import TileShadowCaster
 from app.map import MapToTileConverter
 
@@ -84,3 +85,15 @@ class TestTileShadowCaster:
             print(''.join(result[key]) + ' ' + ''.join(expected[key]))
 
         assert result == expected
+
+    def test_it_should_light_up_a_simple_scene(self):
+        tiles = [
+            [ app.Floor(), app.Wall(), app.Floor() ]
+        ]
+
+        sut = TileShadowCaster()
+        result = sut.shade(tiles, [0, 0])
+
+        assert result[0][0].lit == True
+        assert result[0][1].lit == True
+        assert result[0][2].lit == False
