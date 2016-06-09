@@ -1,8 +1,12 @@
+from blessed import Terminal
+
 class MapView:
     """
     given an array of positions, grab them from the map and draw what is there
     """
     def draw(self, map, positions, objects):
+        term = Terminal()
+
         tiles = [[
             map[y][x].getAsciiRep()
             for (x, y) in row ]
@@ -12,7 +16,7 @@ class MapView:
             if self._isOnScreen(positions, obj):
                 x, y = self._getScreenPos(positions, obj)
                 if map[y][x].lit == True:
-                    tiles[y][x] = obj.ascii_rep
+                    tiles[y][x] = term.red(obj.ascii_rep)
 
         return tiles
 
