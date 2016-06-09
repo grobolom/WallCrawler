@@ -7,7 +7,7 @@ class TestShadowCaster:
             list('.........'),
             list('...#.#...'),
             list('.........'),
-            list('...#@#...'),
+            list('...#.#...'),
             list('.........'),
             list('...#.#...'),
             list('.........'),
@@ -18,7 +18,7 @@ class TestShadowCaster:
             list(' . ... . '),
             list('  .#.#.  '),
             list('   ...   '),
-            list('   #@#   '),
+            list('   #.#   '),
             list('   ...   '),
             list('  .#.#.  '),
             list(' . ... . '),
@@ -39,7 +39,7 @@ class TestShadowCaster:
             list('...#...'),
             list('.....#.'),
             list('.......'),
-            list('@...#..'),
+            list('....#..'),
         ]
         expected = [
             list('...... '),
@@ -48,7 +48,7 @@ class TestShadowCaster:
             list('...#...'),
             list('.....#.'),
             list('.......'),
-            list('@...#  '),
+            list('....#  '),
         ]
         sut = ShadowCaster()
         result = sut.shade(squares, [0, 6])
@@ -66,7 +66,7 @@ class TestShadowCaster:
             list('...#......'),
             list('.....#....'),
             list('..........'),
-            list('@...#.....'),
+            list('....#.....'),
         ]
         expected = [
             list('......  ..'),
@@ -75,7 +75,7 @@ class TestShadowCaster:
             list('...#...  .'),
             list('.....#....'),
             list('..........'),
-            list('@...#     '),
+            list('....#     '),
         ]
         sut = ShadowCaster()
         result = sut.shade(squares, [0, 6])

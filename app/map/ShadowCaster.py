@@ -31,7 +31,6 @@ class ShadowCaster:
         # we are using a list of empty squares as our 'shadow mask' - if we
         # find a square is lit, we will replace it with the real value
         results = [[ ' ' for i in range(width) ] for j in range(height) ]
-        results[center[1]][center[0]] = '@'
 
         return results
 
@@ -42,6 +41,8 @@ class ShadowCaster:
 
         top_slope    = sector[0]
         bottom_slope = sector[1]
+
+        self.lightUpSquare(center, squares, results)
 
         for x in range(col, len(squares[0])):
             last_square = None

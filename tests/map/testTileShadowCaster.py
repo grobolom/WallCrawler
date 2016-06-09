@@ -8,7 +8,7 @@ class TestTileShadowCaster:
             list('.........'),
             list('...#.#...'),
             list('.........'),
-            list('...#@#...'),
+            list('...#.#...'),
             list('.........'),
             list('...#.#...'),
             list('.........'),
@@ -19,7 +19,7 @@ class TestTileShadowCaster:
             list(' . ... . '),
             list('  .#.#.  '),
             list('   ...   '),
-            list('   #@#   '),
+            list('   #.#   '),
             list('   ...   '),
             list('  .#.#.  '),
             list(' . ... . '),
@@ -40,7 +40,7 @@ class TestTileShadowCaster:
             list('...#...'),
             list('.....#.'),
             list('.......'),
-            list('@...#..'),
+            list('....#..'),
         ])
         expected = [
             list('...... '),
@@ -49,7 +49,7 @@ class TestTileShadowCaster:
             list('...#...'),
             list('.....#.'),
             list('.......'),
-            list('@...#  '),
+            list('....#  '),
         ]
         sut = TileShadowCaster()
         result = MapToTileConverter().convertToSquares(
@@ -65,7 +65,7 @@ class TestTileShadowCaster:
             list('...#......'),
             list('.....#....'),
             list('..........'),
-            list('@...#.....'),
+            list('....#.....'),
         ])
         expected = [
             list('......  ..'),
@@ -74,7 +74,7 @@ class TestTileShadowCaster:
             list('...#...  .'),
             list('.....#....'),
             list('..........'),
-            list('@...#     '),
+            list('....#     '),
         ]
         sut = TileShadowCaster()
         result = MapToTileConverter().convertToSquares(
