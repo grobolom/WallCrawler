@@ -6,3 +6,4 @@ from .DeadMonsterCleaner import DeadMonsterCleaner
 from .GameOver import GameOver
 from .XpAssigner import XpAssigner
 from .MonsterMover import MonsterMover
+from .ViewSwitcher import ViewSwitcher
