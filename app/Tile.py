@@ -1,9 +1,16 @@
 class Tile(object):
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         self.walkable = True
         self.blocking = False
         self.ascii_rep = ' '
         self.lit = None
+
+        for dictionary in args:
+            for key in dictionary:
+                setattr(self, key, dictionary[key])
+
+        for key in kwargs:
+            setattr(self, key, kwargs[key])
 
     def __str__(self):
         return str(self.__dict__)
