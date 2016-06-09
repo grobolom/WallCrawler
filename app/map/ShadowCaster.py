@@ -16,7 +16,7 @@ class ShadowCaster:
         [ 0,  1,  1,  0], # N NE
     ]
 
-    def shade(self, squares, center, radius = 6):
+    def shade(self, squares, center, radius = 6.5):
         results = self.getShadowMask(squares, center)
 
         r_2 = radius * radius
