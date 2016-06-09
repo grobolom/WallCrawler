@@ -9,11 +9,11 @@ import blessed
 def main():
 
     s = app.map.MapGenerator()
-    map = s.getMap(30, 1, 10, [80, 20])
+    map = s.getMap(100, 1, 15, [600, 200])
     s_map = map
 
     position = [0, 0]
-    screen_size = [80, 20]
+    screen_size = [21, 13]
     map_size = s_map['size']
 
     s = app.Screen()
@@ -28,7 +28,7 @@ def main():
     objects = []
     s_map['objects'] = []
     id = 2
-    monsters = 2
+    monsters = 100
     for e in range(monsters):
         tile = vtp.getRandomEmptyFloorTile(map)
         x = tile['pos'][0]
@@ -39,7 +39,7 @@ def main():
 
     state = {
         'map': s_map,
-        'character': app.Character(id = 0, position=[41, 11]),
+        'character': app.Character(id = 0, position=[300, 100]),
         'objects': objects,
     }
 
@@ -69,8 +69,6 @@ def main():
     while True:
         term.enter_fullscreen()
         state = st.getState()
-        with term.cbreak():
-            key = term.inkey()
 
         action    = mah.getAction(key, state)
         st.dispatch(action)
@@ -99,6 +97,9 @@ def main():
         if 'game_over' in new_state:
             term.exit_fullscreen()
             break;
+
+        with term.cbreak():
+            key = term.inkey()
     print(term.clear)
     print('seeya!')
 
