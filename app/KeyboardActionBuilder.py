@@ -14,4 +14,9 @@ class KeyboardActionBuilder:
             return { 'name': 'MOVE_LEFT' }
         if key == 'l':
             return { 'name': 'MOVE_RIGHT' }
+        if key == 'KEY_ESC':
+            return {
+                'name': 'SWITCH_VIEW',
+                'to': 'menu',
+            }
         return { 'name': 'NO_MOVE' }

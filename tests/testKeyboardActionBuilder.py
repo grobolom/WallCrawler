@@ -27,3 +27,11 @@ class TestKeyboardActionBuilder:
         k = KeyboardActionBuilder()
 
         assert k.getAction(key) == { 'name': 'NO_MOVE' }
+
+    def test_it_should_open_the_menu_on_escape(self):
+        key = 'KEY_ESC'
+        k = KeyboardActionBuilder()
+        assert k.getAction(key) == {
+            'name': 'SWITCH_VIEW',
+            'to': 'menu'
+        }
