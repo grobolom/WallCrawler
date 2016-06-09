@@ -41,3 +41,13 @@ class TestMapToTileConverter:
         result = sut.convertToSquares(tiles)
 
         assert result == expected
+
+    def test_it_should_convert_until_tiles_to_blanks(self):
+        tiles = [
+            [ app.Floor(lit = False) ],
+        ]
+        expected = [[ ' ' ]]
+        sut = MapToTileConverter()
+        result = sut.convertToSquares(tiles)
+
+        assert result == expected

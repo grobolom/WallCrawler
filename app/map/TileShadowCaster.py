@@ -8,11 +8,12 @@ class TileShadowCaster(ShadowCaster):
 
         # we are using a list of empty squares as our 'shadow mask' - if we
         # find a square is lit, we will replace it with the real value
-        results = [[
-            app.Tile(lit = False) for i in range(width) ]
-                                  for j in range(height) ]
 
-        return results
+        for row in squares:
+            for square in row:
+                square.lit = False
+
+        return squares
 
     def isBlocked(self, square):
         return square != None and square.blocking

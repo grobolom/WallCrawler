@@ -19,4 +19,4 @@ class MapToTileConverter:
                                  for row in tiles ]
 
     def getSquare(self, tile):
-        return tile.ascii_rep
+        return tile.getAsciiRep()
