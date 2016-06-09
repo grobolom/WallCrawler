@@ -90,7 +90,7 @@ def main():
             for l in v.draw(tiles, positions, objects):
                 print(''.join(l))
 
-            print(action)
+            print(action['name'])
             print('hp:' + str(new_state['character'].hp))
             print('xp:' + str(new_state['character'].xp))
 
