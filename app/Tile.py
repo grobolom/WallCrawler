@@ -5,6 +5,12 @@ class Tile(object):
         self.ascii_rep = ' '
         self.lit = None
 
+    def __str__(self):
+        return self.__dict__
+
+    def __repr__(self):
+        return str(self.__dict__)
+
     def __eq__(self, other):
         return not other == None and \
                self.__dict__ == other.__dict__
