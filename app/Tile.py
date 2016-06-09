@@ -28,13 +28,27 @@ class Tile(object):
         return ' '
 
 class Floor(Tile):
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         super(Floor, self).__init__()
         self.ascii_rep = '.'
         self.blocking = False
 
+        for dictionary in args:
+            for key in dictionary:
+                setattr(self, key, dictionary[key])
+
+        for key in kwargs:
+            setattr(self, key, kwargs[key])
+
 class Wall(Tile):
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         super(Wall, self).__init__()
         self.ascii_rep = '#'
         self.blocking = True
+
+        for dictionary in args:
+            for key in dictionary:
+                setattr(self, key, dictionary[key])
+
+        for key in kwargs:
+            setattr(self, key, kwargs[key])
