@@ -1,5 +1,11 @@
 class KeyboardActionBuilder:
-    def getAction(self, key):
+
+    def getAction(self, key, view = 'main'):
+        if view == 'main':
+            return self.getMapAction(key)
+        return { 'name': 'NONE' }
+
+    def getMapAction(self, key):
         if key == 'k':
             return { 'name': 'MOVE_UP' }
         if key == 'j':
