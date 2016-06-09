@@ -15,7 +15,9 @@ class MapView:
         for obj in objects:
             if self._isOnScreen(positions, obj):
                 x, y = self._getScreenPos(positions, obj)
-                if map[y][x].lit == True:
+                pos_x, pos_y = obj.position
+
+                if map[pos_y][pos_x].lit == True:
                     tiles[y][x] = term.red(obj.ascii_rep)
 
         return tiles
