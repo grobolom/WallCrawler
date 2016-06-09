@@ -10,7 +10,7 @@ class Tile(object):
                self.__dict__ == other.__dict__
 
     def getAsciiRep(self):
-        if self.lit:
+        if self.lit == None or self.lit:
             return self.ascii_rep
         return ' '
 

@@ -13,7 +13,7 @@ class TestTile:
         sut.lit = False
         assert sut.getAsciiRep() == ' '
 
-    def test_it_should_return_an_empty_space_when_not_set(self):
+    def test_it_should_return_an_ascii_rep_when_not_set(self):
         sut = app.Tile()
         sut.ascii_rep = '#'
-        assert sut.getAsciiRep() == ' '
+        assert sut.getAsciiRep() == '#'
