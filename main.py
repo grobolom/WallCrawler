@@ -82,12 +82,13 @@ def main():
         new_state = st.getState()
 
         c = new_state['character']
-        pos = (c.x, c.y)
+        pos = c.position
         positions = s.draw(map_size, screen_size, pos)
         objects = new_state['objects']
 
         with term.location(0, 0):
             tiles = shadow_caster.shade(map['tiles'], pos)
+
             for l in v.draw(tiles, positions, objects):
                 print(''.join(l))
 
