@@ -54,7 +54,7 @@ class TestTileShadowCaster:
         ]
         sut = TileShadowCaster()
         result = MapToTileConverter().convertToSquares(
-            sut.shade(squares, [0, 6]))
+            sut.shade(squares, [0, 6], 10))
 
         assert result == expected
 
@@ -78,7 +78,7 @@ class TestTileShadowCaster:
             list('....#     '),
         ]
         sut = TileShadowCaster()
-        res = sut.shade(squares, [0, 6])
+        res = sut.shade(squares, [0, 6], 15)
         result = MapToTileConverter().convertToSquares(res)
 
         for key, row in enumerate(result):

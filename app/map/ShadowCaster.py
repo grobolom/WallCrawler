@@ -16,11 +16,12 @@ class ShadowCaster:
         [ 0,  1,  1,  0], # N NE
     ]
 
-    def shade(self, squares, center):
+    def shade(self, squares, center, radius = 6):
         results = self.getShadowMask(squares, center)
 
+        r_2 = radius * radius
         for o in self.OCTANT_TRANSFORMS:
-            self.castShadow(1, center, [1.0, 0.0], squares, results, o)
+            self.castShadow(1, center, [1.0, 0.0], squares, results, o, r_2)
 
         return results
 
@@ -35,7 +36,7 @@ class ShadowCaster:
         return results
 
 
-    def castShadow(self, col, center, sector, squares, results, octant):
+    def castShadow(self, col, center, sector, squares, results, octant, r_2):
         center_x = center[0]
         center_y = center[1]
 
@@ -83,7 +84,9 @@ class ShadowCaster:
                 if top_slope <= se_slope:
                     continue
 
-                self.lightUpSquare(position, squares, results)
+                distance_squared = x*x + y*y
+                if distance_squared <= r_2:
+                    self.lightUpSquare(position, squares, results)
 
                 # blocked to non-blocked - we set the top slope of the existing
                 # sector to the se corner of the previous square, which is the
@@ -101,7 +104,8 @@ class ShadowCaster:
                 # continues down the bottom portion
                 if self.notToBlocked(square, last_square):
                     new_sector = [ top_slope, nw_slope ]
-                    self.castShadow(x + 1, center, new_sector, squares, results, octant)
+                    self.castShadow(x + 1, center, new_sector, squares,
+                                    results, octant, r_2)
 
                 last_square = square
 

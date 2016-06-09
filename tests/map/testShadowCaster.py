@@ -51,7 +51,7 @@ class TestShadowCaster:
             list('....#  '),
         ]
         sut = ShadowCaster()
-        result = sut.shade(squares, [0, 6])
+        result = sut.shade(squares, [0, 6], 15)
 
         for key, row in enumerate(result):
             print(''.join(result[key]) + ' ' + ''.join(expected[key]))
@@ -78,7 +78,7 @@ class TestShadowCaster:
             list('....#     '),
         ]
         sut = ShadowCaster()
-        result = sut.shade(squares, [0, 6])
+        result = sut.shade(squares, [0, 6], 15)
 
         for key, row in enumerate(result):
             print(''.join(result[key]) + ' ' + ''.join(expected[key]))
