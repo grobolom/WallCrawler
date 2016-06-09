@@ -11,7 +11,7 @@ class MapGenerator:
 
         map = { 
             'tiles': [[
-                app.Tile() for i in range(map_x) ]
+                app.Wall() for i in range(map_x) ]
                            for j in range(map_y) ],
             'size': map_size,
         }
@@ -49,7 +49,11 @@ class MapGenerator:
     def isEmpty(self, pos, map):
         x = pos[0]
         y = pos[1]
-        return map[y][x] == None or type(map[y][x]) == app.Tile
+        return (
+            map[y][x] == None or \
+            type(map[y][x]) == app.Tile or \
+            type(map[y][x]) == app.Wall
+        )
 
     def hasANotEmptySquareNearby(self, pos, map):
         x = pos[0]

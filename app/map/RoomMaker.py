@@ -38,6 +38,6 @@ class RoomMaker:
         for x in range(size[0]):
             for y in range(size[1]):
                 t = tiles[y + corner[1]][x + corner[0]]
-                if t != None and type(t) != app.Tile:
+                if t != None and type(t) != app.Tile and type(t) != app.Wall:
                     return True
         return False
