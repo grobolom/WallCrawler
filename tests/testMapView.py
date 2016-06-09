@@ -37,8 +37,7 @@ class TestMapView:
 
         map_view = MapView()
 
-        tile = Tile()
-        tile.ascii_rep = '.'
+        tile = Tile(ascii_rep = '.', lit = True)
         map = [[ tile, tile ],[ tile, tile ]]
         positions = [[(0, 0), (1, 0)],[(0, 1), (1, 1)]]
 
@@ -57,8 +56,7 @@ class TestMapView:
 
         map_view = MapView()
 
-        tile = Tile()
-        tile.ascii_rep = '.'
+        tile = Tile(ascii_rep = '.', lit = True)
         map = [[ tile, tile, tile ],[ tile, tile, tile ],[ tile, tile, tile ]]
         positions = [[(0, 0), (1, 0)],[(1, 0), (1, 1)]]
 
