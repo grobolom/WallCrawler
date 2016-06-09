@@ -6,7 +6,7 @@ class Tile(object):
         self.lit = None
 
     def __str__(self):
-        return self.__dict__
+        return str(self.__dict__)
 
     def __repr__(self):
         return str(self.__dict__)
