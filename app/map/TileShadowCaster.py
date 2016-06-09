@@ -8,8 +8,9 @@ class TileShadowCaster(ShadowCaster):
 
         # we are using a list of empty squares as our 'shadow mask' - if we
         # find a square is lit, we will replace it with the real value
-        results = [[ app.Tile() for i in range(width) ] for j in range(height) ]
-        results[center[1]][center[0]].ascii_rep = '@'
+        results = [[
+            app.Tile(lit = False) for i in range(width) ]
+                                  for j in range(height) ]
 
         return results
 
@@ -21,6 +22,7 @@ class TileShadowCaster(ShadowCaster):
         y = position[1]
 
         results[y][x] = squares[y][x]
+        results[y][x].lit = True
 
     def notToBlocked(self, square, last_square):
         return last_square != None and \
