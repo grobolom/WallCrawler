@@ -95,6 +95,7 @@ def main():
         objects = new_state['objects']
 
         tiles = shadow_caster.shade(map['tiles'], pos)
+        tiles_map = [ ''.join(l) for l in v.draw(tiles, positions, objects) ]
 
         screen.draw(0, 21, panel.draw(20, 5, [
             action['name'],
@@ -103,11 +104,7 @@ def main():
             key,
             new_state['view'],
         ]))
-
-        with term.location(0, 0):
-            for l in v.draw(tiles, positions, objects):
-                print ''.join(l)
-
+        screen.draw(0, 0, panel.draw(80, 20, tiles_map))
 
         if 'game_over' in new_state:
             term.exit_fullscreen()
