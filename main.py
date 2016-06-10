@@ -71,10 +71,13 @@ def main():
     term = blessed.Terminal()
     moah = app.monsters.MonsterActionHandler()
     shadow_caster = app.map.TileShadowCaster()
+    screen = app.utils.Screen(term)
+    panel = app.utils.Panel()
 
     print(term.clear)
+    term.enter_fullscreen()
     while True:
-        term.enter_fullscreen()
+        term.move(0, 0)
         state = st.getState()
 
         action    = mah.getAction(key, state)
@@ -91,17 +94,20 @@ def main():
         positions = s.draw(map_size, screen_size, pos)
         objects = new_state['objects']
 
+        tiles = shadow_caster.shade(map['tiles'], pos)
+
+        screen.draw(0, 21, panel.draw(20, 5, [
+            action['name'],
+            'hp:' + str(new_state['character'].hp),
+            'xp:' + str(new_state['character'].xp),
+            key,
+            new_state['view'],
+        ]))
+
         with term.location(0, 0):
-            tiles = shadow_caster.shade(map['tiles'], pos)
-
             for l in v.draw(tiles, positions, objects):
-                print(''.join(l))
+                print ''.join(l)
 
-            print(action['name'])
-            print('hp:' + str(new_state['character'].hp))
-            print('xp:' + str(new_state['character'].xp))
-            print(key)
-            print(state['view'])
 
         if 'game_over' in new_state:
             term.exit_fullscreen()
