@@ -18,7 +18,7 @@ class KeyboardActionBuilder:
             return { 'name': 'MOVE_LEFT' }
         if key == 'l':
             return { 'name': 'MOVE_RIGHT' }
-        if key == 'KEY_ESC':
+        if key == 'KEY_ESCAPE':
             return {
                 'name': 'SWITCH_VIEW',
                 'to': 'menu',
@@ -26,7 +26,7 @@ class KeyboardActionBuilder:
         return { 'name': 'NO_MOVE' }
 
     def getMenuAction(self, key):
-        if key == 'KEY_ESC':
+        if key == 'KEY_ESCAPE':
             return {
                 'name': 'SWITCH_VIEW',
                 'to': 'main',
