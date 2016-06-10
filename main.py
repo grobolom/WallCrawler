@@ -19,7 +19,10 @@ def main():
     s = app.Screen()
     v = app.MapView()
     k = app.keyboard.MapKeyHandler()
-    mah = app.keyboard.MoveAndAttackHandler()
+
+    mah = app.KeyboardActionBuilder(
+        app.keyboard.MoveAndAttackHandler()
+    )
 
     vtp = app.map.ValidTilePicker()
 
@@ -41,9 +44,13 @@ def main():
         'map': s_map,
         'character': app.Character(id = 0, position=[300, 100]),
         'objects': objects,
+        'view': 'main',
     }
 
     reducers = [
+        # view-related actions first?
+        app.reducers.ViewSwitcher(),
+
         # handle character actions first
         app.reducers.AttackReducer(),
         app.reducers.CharacterMover(),
@@ -93,6 +100,8 @@ def main():
             print(action['name'])
             print('hp:' + str(new_state['character'].hp))
             print('xp:' + str(new_state['character'].xp))
+            print(key)
+            print(state['view'])
 
         if 'game_over' in new_state:
             term.exit_fullscreen()
@@ -100,6 +109,8 @@ def main():
 
         with term.cbreak():
             key = term.inkey()
+            if key.is_sequence:
+                key = key.name
     print(term.clear)
     print('seeya!')
 
