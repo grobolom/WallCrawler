@@ -1,3 +1,9 @@
 class Panel:
     def draw(self, width, height, lines):
-        return [ line.ljust(width, ' ')[:width] for line in lines[:height] ]
+        result = []
+        for line in lines[:height]:
+            if line:
+                result += [ line.ljust(width, ' ')[:width] ]
+            else:
+                result += [ ' ' * width ]
+        return result
