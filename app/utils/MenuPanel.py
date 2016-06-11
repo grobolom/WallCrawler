@@ -1,2 +1,3 @@
 class MenuPanel:
-    pass
+    def draw(self, width, height, lines):
+        pass
