@@ -1,0 +1,2 @@
+class MenuPanel:
+    pass
