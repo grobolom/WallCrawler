@@ -102,7 +102,7 @@ def main():
             '(ESC): Continue',
         ]
 
-        if new_state == 'main':
+        if new_state['view'] == 'main':
             screen.draw(0, 21, panel.draw(20, 5, [
                 action['name'],
                 'hp:' + str(new_state['character'].hp),
