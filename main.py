@@ -96,15 +96,23 @@ def main():
 
         tiles = shadow_caster.shade(map['tiles'], pos)
         tiles_map = [ ''.join(l) for l in v.draw(tiles, positions, objects) ]
+        menu = [
+            '(S): Save And Quit',
+            '(Q): Quit',
+            '(ESC): Continue',
+        ]
 
-        screen.draw(0, 21, panel.draw(20, 5, [
-            action['name'],
-            'hp:' + str(new_state['character'].hp),
-            'xp:' + str(new_state['character'].xp),
-            key,
-            new_state['view'],
-        ]))
-        screen.draw(0, 0, panel.draw(80, 20, tiles_map))
+        if new_state == 'main':
+            screen.draw(0, 21, panel.draw(20, 5, [
+                action['name'],
+                'hp:' + str(new_state['character'].hp),
+                'xp:' + str(new_state['character'].xp),
+                key,
+                new_state['view'],
+            ]))
+            screen.draw(0, 0, panel.draw(80, 20, tiles_map))
+        else:
+            screen.draw(5, 5, panel.draw(40, 20, menu))
 
         if 'game_over' in new_state:
             term.exit_fullscreen()
