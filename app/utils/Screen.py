@@ -5,6 +5,8 @@ class Screen:
         self.term = term
 
     def draw(self, x, y, stuff):
-        with self.term.location(x, y):
-            for line in stuff:
+        i = 0
+        for line in stuff:
+            with self.term.location(x, y + i):
                 print(line)
+            i += 1
