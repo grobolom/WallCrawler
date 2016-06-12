@@ -1,4 +1,4 @@
-from app import MapScreen
+from app.components import MapScreen
 
 class TestMapScreen:
     def test_it_should_use_the_screen_to_draw_a_map(self):
