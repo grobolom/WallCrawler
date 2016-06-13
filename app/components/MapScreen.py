@@ -1,4 +1,6 @@
 from app import Screen
 
 class MapScreen:
-    pass
+    def render(self, state):
+        new_state = state
+        return new_state
