@@ -49,3 +49,16 @@ class TestMoveAndAttackHandler:
         }
 
         assert sut.getAction(key, state) == expected
+
+    def test_it_should_return_the_nothing_action_on_an_invalid_key(self):
+        sut = MoveAndAttackHandler()
+        key = 'x'
+        state = {
+            'character': {},
+            'objects': []
+        }
+        expected = {
+            'name': 'NOTHING',
+        }
+
+        assert sut.getAction(key, state) == expected
