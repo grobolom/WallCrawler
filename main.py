@@ -9,7 +9,7 @@ import blessed
 def main():
 
     s = app.map.MapGenerator()
-    map = s.getMap(100, 1, 15, [600, 200])
+    map = s.getMap(50, 1, 15, [200, 50])
     s_map = map
 
     position = [0, 0]
@@ -46,6 +46,9 @@ def main():
         'objects': objects,
         'view': 'main',
     }
+
+    store_saver = app.utils.StoreSaver()
+    store_saver.save(state)
 
     reducers = [
         # view-related actions first?
