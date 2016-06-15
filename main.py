@@ -42,7 +42,7 @@ def main():
 
     state = {
         'map': s_map,
-        'character': app.Character(id = 0, position=[300, 100]),
+        'character': app.Character(id = 0, position=[100, 25]),
         'objects': objects,
         'view': 'main',
     }
