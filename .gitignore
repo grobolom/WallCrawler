@@ -4,3 +4,4 @@ venv/
 .cache/
 .coverage
 .coveragerc
+saves/
