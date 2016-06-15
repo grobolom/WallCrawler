@@ -28,6 +28,19 @@ class State:
         if view == 'menu' and key == 'escape':
             go_to_main_view()
 
+        # main
+        if view == 'main' and key == 'game_action':
+            fire_reducers()
+            get_game_actions()
+            go_next()
+
+        if view == 'main' and key == 'escape':
+            go_to_menu()
+
+        # splash
+        if view == 'splash' and key == 'any':
+            go_to_start_menu()
+
     def displayView(self,  view):
         if view == 'splash_screen':
             return displayScreen()
