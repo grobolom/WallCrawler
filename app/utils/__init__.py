@@ -4,3 +4,4 @@ from .Panel import Panel
 from .Screen import Screen
 from .ViewRenderer import ViewRenderer
 from .MenuPanel import MenuPanel
+from .StoreSaver import StoreSaver
