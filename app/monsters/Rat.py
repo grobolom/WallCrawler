@@ -6,6 +6,13 @@ class Rat(Monster):
     def getAction(self, state):
         map = state['map']
         square = self.findANearbySquare(map)
+        if self.characterInSquare(square, state['character']):
+            return {
+                'name': 'ATTACK',
+                'target': 'character',
+                'source': self.id,
+            }
+
         return {
             'name': 'MOVE',
             'target': self.id,
@@ -28,3 +35,6 @@ class Rat(Monster):
 
             if type(map['tiles'][y][x]) == app.Floor:
                 return [x, y]
+
+    def characterInSquare(self, square, character):
+        return square == character.position

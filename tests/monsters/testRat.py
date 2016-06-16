@@ -10,6 +10,7 @@ class TestRat:
                 'size': [2, 1],
             },
             'objects': [],
+            'character': {},
         }
         action = sut.getAction(state)
         expected = {
