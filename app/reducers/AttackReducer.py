@@ -5,6 +5,7 @@ class AttackReducer:
 
         new_state = state
         source = action['source']
+        target = action['target']
 
         if target == 'character':
             new_state = self.changeCharacterHealth(state, source)
