@@ -4,6 +4,11 @@ class AttackReducer:
             return state
 
         new_state = state
+        source = action['source']
+
+        if target == 'character':
+            new_state = self.changeCharacterHealth(state, source)
+            return new_state
 
         id = action['target'].id
         objects = new_state['objects']
@@ -17,6 +22,14 @@ class AttackReducer:
         new_state['objects'] = objects
 
         return new_state
+
+    def changeCharacterHealth(self, state, source):
+        character = state['character']
+        character.hp -= 1
+
+        state['character'] = character
+
+        return state
 
     def changeHealthById(self, objects, id, change, source):
         new_objects = objects
