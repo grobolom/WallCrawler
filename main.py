@@ -9,7 +9,7 @@ import blessed
 def main():
 
     s = app.map.MapGenerator()
-    map = s.getMap(50, 1, 15, [200, 50])
+    map = s.getMap(1, 1, 1, [80, 20])
     s_map = map
 
     position = [0, 0]
@@ -31,7 +31,7 @@ def main():
     objects = []
     s_map['objects'] = []
     id = 2
-    monsters = 100
+    monsters = 2
     for e in range(monsters):
         tile = vtp.getRandomEmptyFloorTile(map)
         x = tile['pos'][0]
@@ -42,7 +42,7 @@ def main():
 
     state = {
         'map': s_map,
-        'character': app.Character(id = 0, position=[100, 25]),
+        'character': app.Character(id = 0, position=[40, 10]),
         'objects': objects,
         'view': 'main',
     }
@@ -107,13 +107,13 @@ def main():
         ]
 
         if new_state['view'] == 'main':
-            screen.draw(0, 21, panel.draw(20, 5, [
+            screen.draw(0, 21, panel.draw(20, 10, [
                 action['name'],
                 'hp:' + str(new_state['character'].hp),
                 'xp:' + str(new_state['character'].xp),
                 key,
                 new_state['view'],
-            ]))
+            ] + [ a['target'] for a in monster_actions if a['name'] == 'ATTACK']))
             screen.draw(0, 0, panel.draw(80, 20, tiles_map))
         else:
             screen.draw(5, 5, panel.draw(40, 20,
