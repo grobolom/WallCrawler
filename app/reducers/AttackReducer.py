@@ -1,6 +1,7 @@
 class AttackReducer:
     def reduce(self, state, action):
-        if action['name'] != 'ATTACK_CHARACTER':
+        if action['name'] != 'ATTACK_CHARACTER' and \
+            action['name'] != 'ATTACK':
             return state
 
         new_state = state
