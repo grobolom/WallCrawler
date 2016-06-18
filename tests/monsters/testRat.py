@@ -1,5 +1,6 @@
 import app
 from app.monsters import Rat
+from app import Character
 
 class TestRat:
     def test_it_should_move_around(self):
@@ -10,7 +11,7 @@ class TestRat:
                 'size': [2, 1],
             },
             'objects': [],
-            'character': {},
+            'character': Character(position=[0, 0]),
         }
         action = sut.getAction(state)
         expected = {
