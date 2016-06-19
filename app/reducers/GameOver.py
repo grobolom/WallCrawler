@@ -8,6 +8,9 @@ class GameOver:
         if self.hasNoMonsters(state['objects']):
             new_state['game_over'] = True
 
+        if self.characterDead(state['character']):
+            new_state['game_over'] = True
+
         return new_state
 
     def hasNoMonsters(self, objects):
@@ -15,3 +18,6 @@ class GameOver:
             if o.type == 'monster':
                 return False
         return True
+
+    def characterDead(self, character):
+        return character.hp <= 0
