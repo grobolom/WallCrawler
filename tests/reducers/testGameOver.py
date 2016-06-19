@@ -26,7 +26,7 @@ class TestGameOver:
         sut = GameOver()
 
         action = { 'name': 'RANDOM' }
-        state = { 'objects': [ app.Monster() ] }
+        state = { 'objects': [ app.Monster() ], 'character': app.Character() }
 
         new_state = sut.reduce(state, action)
 
