@@ -1,4 +1,5 @@
 import app
+import app.monsters
 from app.reducers import GameOver
 
 class TestGameOver:
@@ -17,6 +18,19 @@ class TestGameOver:
 
         action = { 'name': 'RANDOM' }
         state = { 'objects': [] }
+
+        new_state = sut.reduce(state, action)
+
+        assert new_state['game_over'] == True
+
+    def test_it_should_end_the_game_if_the_player_has_no_hp(self):
+        sut = GameOver()
+
+        action = { 'name': 'RANDOM' }
+        state = {
+            'objects': [ app.monsters.Rat() ],
+            'character': app.Character(hp = 0),
+        }
 
         new_state = sut.reduce(state, action)
 
