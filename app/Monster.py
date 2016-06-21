@@ -11,6 +11,7 @@ class Monster(Object):
         self.type = 'monster'
         self.dead = False
         self.killed_by = None
+        self.damage = 2
 
         for dictionary in args:
             for key in dictionary:

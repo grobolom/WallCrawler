@@ -26,6 +26,30 @@ class TestAttackReducer:
 
         assert new_state['objects'][0].hp == END_HP
 
+    def test_it_should_reduce_target_health(self):
+        sut = AttackReducer()
+
+        START_HP = 10
+        END_HP = 8
+
+        character = app.Character(hp = START_HP)
+        monster = app.Monster(id = 2, hp = START_HP, damage = 2)
+
+        action = {
+            'name': 'ATTACK',
+            'source': monster,
+            'target': 'character',
+        }
+
+        state = {
+            'character': character,
+            'objects': [ monster ]
+        }
+
+        new_state = sut.reduce(state, action)
+
+        assert new_state['character'].hp == END_HP
+
     # TODO: switch this to 'character dies' instead of 'hp below 1'
     # we should be using actual game terms
     def test_it_should_mark_monster_as_dead_if_hp_gets_below_1(self):

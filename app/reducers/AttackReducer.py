@@ -27,7 +27,7 @@ class AttackReducer:
 
     def changeCharacterHealth(self, state, source):
         character = state['character']
-        character.hp -= 1
+        character.hp -= source.damage
 
         state['character'] = character
 
