@@ -15,8 +15,9 @@ class AttackReducer:
         id = action['target'].id
         objects = new_state['objects']
         source = action['source']
+        damage = source.damage
 
-        objects, target = self.changeHealthById(objects, id, -1, source)
+        objects, target = self.changeHealthById(objects, id, damage, source)
 
         if target.hp < 1:
             new_state['character'].xp += target.xp
