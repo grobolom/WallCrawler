@@ -9,6 +9,7 @@ class Character(Object):
         self.hp = 10
         self.xp = 0
         self.dead = False
+        self.damage = 1
 
         for dictionary in args:
             for key in dictionary:
