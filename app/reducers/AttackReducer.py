@@ -15,7 +15,7 @@ class AttackReducer:
         id = action['target'].id
         objects = new_state['objects']
         source = action['source']
-        damage = source.damage
+        damage = -1 * source.damage
 
         objects, target = self.changeHealthById(objects, id, damage, source)
 
